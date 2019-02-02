@@ -31,8 +31,7 @@ class User:
         self._favorites = {"comments": [], "questions": [], "news": []}
         self.set_num_of_questions(0)
         self.set_num_of_comments(0)
-        self.set_ban_state(0)
-        
+        self.set_ban_state(0)    
 
     def set_name(self, name): 
         self._name = name
@@ -62,12 +61,6 @@ class User:
 
     def set_ban_state(self, ban_state):
         self._ban_state = ban_state
-
-    def increase_num_of_questions(self):
-        self._num_of_questions += 1
-    
-    def increase_num_of_comments(self):
-        self._num_of_comments += 1
     
     def get_name(self):
     	return self._name
@@ -110,6 +103,12 @@ class User:
         """Returns the list of dislikes the question has."""
         return self.get_ratings()["dislikes"]
 
+    def increase_num_of_questions(self):
+        self._num_of_questions += 1
+    
+    def increase_num_of_comments(self):
+        self._num_of_comments += 1
+
     def to_string(self, language):
         """Allows the object user to be printed.
 
@@ -122,6 +121,20 @@ class User:
         """
         return str(language.get("n") + self._name + "\n" + language.get("un") 
                 + self._username + "\n" + language.get("e") + self._email + "\n")
+
+    def check_username(self, username):
+        """Checks whether the username passed is the user's username or not.
+
+        Args:
+            username (str): A string to be checked.
+
+        Returns:
+            bool: True if username is the user's username. False otherwise.
+        """
+        if self._username == username:
+            return True
+        else:
+            return False
 
     def add_fav(self, qcn):
         """Invokes self.get_type_fav() on the qcn object to know where to append it.
@@ -162,24 +175,24 @@ class User:
         self.add_fav(qcn)
         return False
 
-    def watch_fav(self, language, qcn):
+    def watch_fav(self, language, q_c_n):
         """Shows the favorites of a user.
 
         Args:
             language (dict): The language in which the information will be given.
-            qcn (str) : The type of favorites that are going to be watched.
+            q_c_n (str) : The type of favorites that are going to be watched.
 
         Returns:
             str: The information of all the favorites in the corresponding list. 
         """
         printing = ""
-        if qcn == "question":
+        if q_c_n == "question":
             for question in self._favorites["questions"]:
                 printing += question.to_string(language)
-        elif qcn == "comment":
+        elif q_c_n == "comment":
             for comment in self._favorites["comments"]:
                 printing += comment.to_string(language)
-        elif qcn == "new":
+        elif q_c_n == "new":
             for new in self._favorites["news"]:
                 printing += new.to_string(language)
         return printing
@@ -189,8 +202,17 @@ class User:
         """
         self.set_ban_state(1)
 
-    def upload_files(self):
-        pass
+    @staticmethod
+    def delete_favorite(q_c_n):
+        """Deletes the object from the favorite's corresponding list all of the users 
+        that have it as one of their favorites.
+
+        Args:
+            q_c_n (Question/Comment/New) : An object to be deleted.
+        """
+        for username_key in User.users:
+            if q_c_n.is_favorite(User.users[username_key]):
+                (User.users[username_key].get_type_fav(q_c_n)).remove(q_c_n)
 
     def delete_user(self):
         """Deletes the user and all the questions, comments and ratings he/she has made.
@@ -207,29 +229,3 @@ class User:
             rating.delete_rating()
         self._favorites.clear()
         del User.users[self._username]
-
-    def check_username(self, username):
-        """Checks whether the username passed is the user's username or not.
-
-        Args:
-            username (str): A string to be checked.
-
-        Returns:
-            bool: True if username is the user's username. False otherwise.
-        """
-        if self._username == username:
-            return True
-        else:
-            return False
-
-    @staticmethod
-    def delete_favorite(q_c_n):
-        """Deletes the object from the favorite's corresponding list all of the users 
-        that have it as one of their favorites.
-
-        Args:
-            q_c_n (Question/Comment/New) : An object to be deleted.
-        """
-        for username_key in User.users:
-            if q_c_n.is_favorite(User.users[username_key]):
-                (User.users[username_key].get_type_fav(q_c_n)).remove(q_c_n)

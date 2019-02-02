@@ -28,14 +28,15 @@ class Admin(User):
     def set_num_of_news(self, num_of_news):
         self._num_of_news = num_of_news
 
-    def increase_num_of_news(self):
-        self._num_of_news += 1
-
     def get_news(self):
     	return self._news
 
     def get_num_of_news(self):
         return self._num_of_news
+
+    def increase_num_of_news(self):
+        self._num_of_news += 1
+
     def delete_admin(self):
         """Invokes self.delete_user() to delete the user, and then, deletes the admin and all
         the news he/she has uploaded.

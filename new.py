@@ -68,16 +68,6 @@ class New:
 
 	def set_num_of_comments(self, num_of_comments):
 		self._num_of_comments = num_of_comments
-
-	def increase_num_of_comments(self):
-		self._num_of_comments += 1
-
-	def increase_views(self):
-		self._views += 1
-
-	@staticmethod
-	def increase_num_of_news():
-		New.num_of_news += 1
 		
 	def get_admin(self):
 		return self._admin
@@ -112,30 +102,6 @@ class New:
 	def get_ratings(self):
 		return self._ratings
 
-	def watch_users_reactions(self, language, reaction):
-		"""Shows the users who reacted to the new.
-
-		Args:
-            language (dict): The language in which the information will be given.
-            reaction (str): The reaction the user wants to see that the other users have made.
-
-        Returns:
-            str: The users' usernames who reacted to the new.
-		"""
-		printing = ""
-		if reaction == "like":
-			for rating in self.get_likes():
-				printing += (rating.get_user()).get_username() + "\n"
-		elif reaction == "dislike":
-			for rating in self.get_dislikes():
-				printing += (rating.get_user()).get_username() + "\n"
-		if printing == "" and reaction == "like":
-			printing = language.get("nls")
-		elif printing == "" and reaction == "dislike":
-			printing = language.get("ndls")
-		return printing
-
-
 	def get_likes(self):
 		"""Returns the list of likes the new has."""
 		return (self._ratings)["likes"]
@@ -143,6 +109,16 @@ class New:
 	def get_dislikes(self):
 		"""Returns the list of dislikes the new has."""
 		return (self._ratings)["dislikes"]
+
+	def increase_num_of_comments(self):
+		self._num_of_comments += 1
+
+	def increase_views(self):
+		self._views += 1
+
+	@staticmethod
+	def increase_num_of_news():
+		New.num_of_news += 1
 
 	def to_string(self, language):
 		"""Allows the object new to be printed.
@@ -174,6 +150,29 @@ class New:
 			sorted_comments = sorted(self._comments, key=lambda comment: len(comment.get_likes()))
 			for comment in sorted_comments:
 				printing += comment.to_string(language)
+		return printing
+
+	def watch_users_reactions(self, language, reaction):
+		"""Shows the users who reacted to the new.
+
+		Args:
+            language (dict): The language in which the information will be given.
+            reaction (str): The reaction the user wants to see that the other users have made.
+
+        Returns:
+            str: The users' usernames who reacted to the new.
+		"""
+		printing = ""
+		if reaction == "like":
+			for rating in self.get_likes():
+				printing += (rating.get_user()).get_username() + "\n"
+		elif reaction == "dislike":
+			for rating in self.get_dislikes():
+				printing += (rating.get_user()).get_username() + "\n"
+		if printing == "" and reaction == "like":
+			printing = language.get("nls")
+		elif printing == "" and reaction == "dislike":
+			printing = language.get("ndls")
 		return printing
 
 	def check_user(self, user):

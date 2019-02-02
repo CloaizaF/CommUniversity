@@ -20,6 +20,12 @@ class Rating:
 		self._like = like
 
 	def set_user(self, user):
+		"""Sets the ratings's user, appends the rating to the user's likes or dislikes 
+		list, depending on the type of rating it is.
+
+		Args:
+			user (User): user to be set.
+		"""
 		self._user = user
 		user_ratings = user.get_ratings()
 		if self._like == "like":
@@ -28,6 +34,12 @@ class Rating:
 			(user_ratings["dislikes"]).append(self)
 
 	def set_qcn(self, qcn):
+		"""Sets the ratings's qcn, appends the rating to the qcn's likes or dislikes 
+		list, depending on the type of rating it is.
+
+		Args:
+			qcn (Question/Comment/New): The question/comment/new to be set.
+		"""
 		self._qcn = qcn
 		qcnr = qcn.get_ratings()
 		if self._like == "like":

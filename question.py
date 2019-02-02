@@ -63,12 +63,6 @@ class Question:
 	def set_views(self, views):
 		self._views = views
 
-	def increase_num_of_comments(self):
-		self._num_of_comments += 1
-
-	def increase_views(self):
-		self._views += 1
-
 	def get_user(self):
 		return self._user
 
@@ -90,11 +84,57 @@ class Question:
 	def get_num_of_comments(self):
 		return self._num_of_comments
 
+	def get_views(self):
+		return self._views
+
 	def get_ratings(self):
 		return self._ratings
 
-	def get_views(self):
-		return self._views
+	def get_likes(self):
+		"""Returns the list of likes the question has."""
+		return self.get_ratings()["likes"]
+
+	def get_dislikes(self):
+		"""Returns the list of dislikes the question has."""
+		return self.get_ratings()["dislikes"]
+
+	def increase_num_of_comments(self):
+		self._num_of_comments += 1
+
+	def increase_views(self):
+		self._views += 1
+
+	def to_string(self, language):
+		"""Allows the object question to be printed.
+
+        Args:
+            language (dict): The language in which the information will be given.
+
+        Returns:
+            str: The question's information.
+
+        """	
+		return str(language.get("q") + self._question + "\n" + language.get("id") 
+				+ str(self._id) + "\n" + language.get("mb") + (self._user).get_username() 
+				+ "\n" + language.get("da") + str(self._date) + "\n" + language.get("lks") 
+				+ str(len(self.get_likes())) + " " + language.get("dlks") 
+				+ str(len(self.get_dislikes())) + "\n\n")
+
+	def show_comments(self, language):
+		"""Shows the question's comments.
+
+		Args:
+            language (dict): The language in which the information will be given.
+
+        Returns:
+            str: The comments the question has.
+		"""
+		printing = ""
+		if len(self._comments):
+			sorted_comments = sorted(self._comments, key=lambda comment: len(comment.get_likes()))
+			for comment in sorted_comments:
+				printing += comment.to_string(language)
+		return printing
 
 	def watch_users_reactions(self, language, reaction):
 		"""Shows the users who reacted to the question.
@@ -118,59 +158,6 @@ class Question:
 		elif printing == "" and reaction == "dislike":
 			printing = language.get("ndls")
 		return printing
-
-	def get_likes(self):
-		"""Returns the list of likes the question has."""
-		return self.get_ratings()["likes"]
-
-	def get_dislikes(self):
-		"""Returns the list of dislikes the question has."""
-		return self.get_ratings()["dislikes"]
-
-	def to_string(self, language):
-		"""Allows the object question to be printed.
-
-        Args:
-            language (dict): The language in which the information will be given.
-
-        Returns:
-            str: The question's information.
-
-        """
-        		
-		return str(language.get("q") + self._question + "\n" + language.get("id") 
-				+ str(self._id) + "\n" + language.get("mb") + (self._user).get_username() 
-				+ "\n" + language.get("da") + str(self._date) + "\n" + language.get("lks") 
-				+ str(len(self.get_likes())) + " " + language.get("dlks") 
-				+ str(len(self.get_dislikes())) + "\n\n")
-
-	def show_comments(self, language):
-		"""Shows the question's comments.
-
-		Args:
-            language (dict): The language in which the information will be given.
-
-        Returns:
-            str: The comments the question has.
-		"""
-		printing = ""
-		if len(self._comments):
-			sorted_comments = sorted(self._comments, key=lambda comment: len(comment.get_likes()))
-			for comment in sorted_comments:
-				printing += comment.to_string(language)
-		return printing
-
-	def delete_question(self):
-		"""Deletes the question, and all the comments and ratings it has.
-        """
-		for like in self.get_likes():
-			like.delete_rating()
-		for dislike in self.get_dislikes():
-			dislike.delete_rating()
-		for comment in self.get_comments():
-			comment.delete_comment()
-		((self._user).get_questions()).remove(self)
-		((self._channel).get_questions()).remove(self)
 
 	def check_user(self, user):
 		"""Checks whether the object user is the question's user or not.
@@ -199,3 +186,15 @@ class Question:
 			if question == self:
 				return True
 		return False
+
+	def delete_question(self):
+		"""Deletes the question, and all the comments and ratings it has.
+        """
+		for like in self.get_likes():
+			like.delete_rating()
+		for dislike in self.get_dislikes():
+			dislike.delete_rating()
+		for comment in self.get_comments():
+			comment.delete_comment()
+		((self._user).get_questions()).remove(self)
+		((self._channel).get_questions()).remove(self)

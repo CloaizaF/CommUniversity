@@ -38,7 +38,7 @@ class Comment:
 		comments list and increases the number of comments the channel has.
 
 		Args:
-			qn (Question/New): question/new to be set.
+			qn (Question/New): The question/new to be set.
 		"""
 		self._qn = qn
 		qn.get_comments().append(self)
@@ -71,30 +71,6 @@ class Comment:
 	def get_ratings(self):
 		return self._ratings
 
-	def watch_users_reactions(self, language, reaction):
-		"""Shows the users who reacted to the comment.
-
-		Args:
-            language (dict): The language in which the information will be given.
-            reaction (str): The reaction the user wants to see that the other users have made.
-
-        Returns:
-            str: The users' usernames who reacted to the comment.
-		"""
-		printing = ""
-		if reaction == "like":
-			for rating in self.get_likes():
-				printing += (rating.get_user()).get_username() + "\n"
-		elif reaction == "dislike":
-			for rating in self.get_dislikes():
-				printing += (rating.get_user()).get_username() + "\n"
-		if printing == "" and reaction == "like":
-			printing = language.get("nls")
-		elif printing == "" and reaction == "dislike":
-			printing = language.get("ndls")
-		return printing
-
-
 	def get_likes(self):
 		"""Returns the list of likes the question has."""
 		return self.get_ratings()["likes"]
@@ -119,18 +95,28 @@ class Comment:
 				+ str(len(self.get_likes())) + " " + language.get("dlks") 
 				+ str(len(self.get_dislikes())) + "\n\n")
 
-	def delete_comment(self):
-		"""Deletes the comments and all the ratings it has.
-        """
-		for like in self.get_likes():
-			like.delete_rating()
-		for dislike in self.get_dislikes():
-			dislike.delete_rating()
-		((self._user).get_comments()).remove(self)
-		((self._qn).get_comments()).remove(self)
+	def watch_users_reactions(self, language, reaction):
+		"""Shows the users who reacted to the comment.
 
-	def sort_comments(self):
-		pass
+		Args:
+            language (dict): The language in which the information will be given.
+            reaction (str): The reaction the user wants to see that the other users have made.
+
+        Returns:
+            str: The users' usernames who reacted to the comment.
+		"""
+		printing = ""
+		if reaction == "like":
+			for rating in self.get_likes():
+				printing += (rating.get_user()).get_username() + "\n"
+		elif reaction == "dislike":
+			for rating in self.get_dislikes():
+				printing += (rating.get_user()).get_username() + "\n"
+		if printing == "" and reaction == "like":
+			printing = language.get("nls")
+		elif printing == "" and reaction == "dislike":
+			printing = language.get("ndls")
+		return printing
 
 	def check_user(self, user):
 		"""Checks whether the object user is the comment's user or not.
@@ -159,3 +145,13 @@ class Comment:
 			if comment == self:
 				return True
 		return False
+
+	def delete_comment(self):
+		"""Deletes the comments and all the ratings it has.
+        """
+		for like in self.get_likes():
+			like.delete_rating()
+		for dislike in self.get_dislikes():
+			dislike.delete_rating()
+		((self._user).get_comments()).remove(self)
+		((self._qn).get_comments()).remove(self)

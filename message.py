@@ -141,6 +141,16 @@ class Message:
 		1. Yes, I want to delete my account
 		2. No, I do not want to delete my account
 		""",
+	"sorto": """
+		Do you want to sort the channels?
+		1. Yes.
+		2. No.
+		""",
+	"sortby": """
+		Sort the channels by:
+		1. Channel's number of visits
+		2. Channel's number of questions
+		""",
 	"maxattempts": "You have already tried to log in 4 times, we will redirect you to the main menu",
 	"lastattempt": "Last attempt before redirecting you",
 	"i": "The option selected is invalid, please choose a valid option.",
@@ -161,6 +171,7 @@ class Message:
 	"edm": "The emails do not match.",
 	"password": "Insert your password: ",
 	"password2": "Confirm your password: ",
+	"oldpassword": "Insert your last password: ",
 	"np": "Insert the new password: ",
 	"pdm": "The passwords do not match.",
 	"wp": "wrong password",
@@ -173,6 +184,7 @@ class Message:
 	"ic": "The channel does not exist.",
 	"chs": "Channels: ",
 	"nq": "This channel has no questions",
+	"topic": "Topic: ",
 	"de": "Description: ",
 	"question": "Type a question: ",
 	"ncq": "This question has no comments.",
@@ -353,6 +365,16 @@ class Message:
 		1. Sí, quiero eliminar mi cuenta
 		2. No, no quiero eliminar mi cuenta
 		""",
+	"sorto": """
+		¿Quieres ordenar los canales?
+		1. Sí.
+		2. No.
+		""",
+	"sortby": """
+		Ordenar los canales por:
+		1. El número de visitas del canal
+		2. El número de preguntas del canal
+		""",
 	"maxattempts": "Ya has tratado de ingresar 4 veces, te redireccionaremos al menu principal",
 	"lastattempt": "Ultimo intento antes de redireccionarte",
 	"i": "La opcion elegida es incorrecta, por favor elija otra opcion.",
@@ -373,6 +395,7 @@ class Message:
 	"edm": "Los correos no coinciden.",
 	"password": "Ingrese su contraseña: ",
 	"password2": "Confirme su contraseña:",
+	"oldpassword": "Ingrese su última contraseña: ",
 	"np": "Ingrese la nueva contraseña: ",
 	"pdm": "Las contraseñas no coinciden.",
 	"wp": "Contraseña incorrecta.",
@@ -387,6 +410,7 @@ class Message:
 	"ic": "El canal no existe",
 	"chs": "Canales: ",
 	"nq": "Este canal no tiene preguntas",
+	"topic": "Tema: ",
 	"de": "Descripción: ",
 	"question": "Escriba una pregunta: ",
 	"ncq": "Esta pregunta no tiene comentarios.", 

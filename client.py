@@ -110,62 +110,149 @@ class Client:
 		return user
 
 	@staticmethod
-	def in_channel(language):
-		"""Asks the user for a channel, verifies if it's exists and returns it if true,
-		otherwise, invokes itself to get valid input. 
+	def log_in(language):
+		"""Makes the required verifications for a user to log in and then, if the user
+		passes the verifications, allows him/her to log in.
 
 		Args:
-            language (dict): The language in which the information will be given.
+			language (dict): The language in which the information will be given.
+		"""
+		break_while = 0
+		EXIT = 1
+		attempts = 0
+		while break_while != EXIT:
+			print(language.get("username"))
+			username = input()
+			u = None
+			for usernamek in User.users:
+				if username == usernamek:
+					u = User.users.get(usernamek)
+			if isinstance(u, User):
+				print(language.get("password"))
+				password = input()
+				passwordv = u.get_password()
+				break_while1 = 0
+				pattempts = 1
+				while break_while1 != EXIT:
+					if password != passwordv:
+						print(language.get("wp"))
+						print(language.get("password"))
+						password = input()
+						pattempts += 1
+						if pattempts == 3:
+							break_while2 = 0
+							while break_while2 != EXIT:
+								print(language.get("attempts"))
+								opt = input()
+								if opt == "1":
+									print(language.get("lastattempt"))
+									break_while2 = EXIT
+								elif opt == "2":
+									break_while2 = EXIT
+									break_while1 = EXIT
+									break_while = EXIT
+									u = None
+								else: 
+									print(language.get("i"))
+						elif pattempts == 4:
+							print(language.get("maxattempts"))
+							break_while1 = EXIT
+							break_while = EXIT
+							u = None
+					else:
+						break_while1 = EXIT
+				if isinstance(u, User):
+					if u.get_ban_state() == 0:
+						break_while = EXIT
+					else:
+						print(language.get("ub"))
+						attempts += 1
+			else:
+				print(language.get("iu"))
+				attempts += 1
 
-        Returns:
-            str: The channel that the user chose.
-        """
-		print(language.get("channel"))
-		channel = input()
-		channelr = None
-		for channelk in Channel.channels:
-			if channel == channelk:
-				channelr = Channel.channels[channelk]
-		if isinstance(channelr, Channel):
-			return channelr
-		else: 
-			print(language.get("ic"))
-			return Client.in_channel(language)
+			if attempts == 3:
+				w1 = 0
+				while w1 == 0:
+					print(language.get("attempts"))
+					opt = input()
+					if opt == "1":
+						print(language.get("lastattempt"))
+						w1 = 1
+					elif opt == "2":
+						w1 = 1
+						break_while = EXIT
+					else: 
+						print(language.get("i"))
+			elif attempts == 4:
+				print(language.get("maxattempts"))
+				break_while = EXIT
+		return u
 
 	@staticmethod
-	def show_channels(language):
-		"""If the dict Channel.channels has channels, shows their names, otherwise,
-		shows that there are no channels. 
-		Args:
-            language (dict): The language in which the information will be given.
+	def in_user(language):
+		"""Asks for a username and returns the user if the user's username exists.
 
-        Returns:
-            str: The channels' names if they exist. Otherwise, shows there are none.
-        """
-		if len(Channel.channels):
-			print(language.get("channels"))
-			for ch in Channel.channels:
-				print(ch)
-		else:
-			print(language.get("nchannels"))
+		Args:
+			language (dict): The language in which the information will be given.
+
+		Returns:
+			object: A User object if the username exists, otherwise, None.
+		"""
+		print(language.get("inub"))
+		username = input()
+		user_returned = None
+		for username_key in User.users:
+			if username_key == username:
+				user_returned = User.users[username_key]
+		return user_returned
 
 	@staticmethod
-	def show_news(language):
-		"""If the dict New.news has news, shows their information, otherwise,
-		shows that there are no news. 
-		Args:
-            language (dict): The language in which the information will be given.
+	def is_user_password(user, language):
+		"""Asks the user for his/her last password and checks if it is the true 
+		password.
 
-        Returns:
-            str: The news' information if they exist. Otherwise, shows there are none.
-        """
-		if len(New.news):
-			print(language.get("news"))
-			for new in New.news:
-				print(language.get("title1") + str((New.news[new]).get_title()) + "\n" 
-				+ language.get("id") + str((New.news[new]).get_id()))
-		else:
-			print(language.get("nnews")) 
+		Args:
+			user (User): The user whose password will be checked
+			language (dict): The language in which the information will be given.
+
+		Returns:
+			bool: True if the password inserted is the user's password. Otherwise, 
+				False.
+		"""
+		print(language.get("oldpassword"))
+		password = input()
+		true_password = user.get_password()
+		break_while = 0
+		EXIT = 1
+		pattempts = 1
+		while break_while != EXIT:
+			if password != true_password:
+				print(language.get("wp"))
+				print(language.get("oldpassword"))
+				password = input()
+				pattempts += 1
+				if pattempts == 3:
+					break_while1 = 0
+					while break_while1 != EXIT:
+						print(language.get("attempts"))
+						opt = input()
+						if opt == "1":
+							print(language.get("lastattempt"))
+							break_while1 = EXIT
+						elif opt == "2":
+							break_while1 = EXIT
+							break_while = EXIT
+						else: 
+							print(language.get("i"))
+				elif pattempts == 4:
+					print(language.get("maxattempts"))
+					break_while1 = EXIT
+					break_while = EXIT
+			else:
+				break_while = EXIT
+				return True
+		return False
 
 	@staticmethod 
 	def in_id(language, ch_q_n=None):
@@ -220,6 +307,73 @@ class Client:
 			return Client.in_id(language)
 
 	@staticmethod
+	def in_channel(language):
+		"""Asks the user for a channel, verifies if it's exists and returns it if true,
+		otherwise, invokes itself to get valid input. 
+
+		Args:
+            language (dict): The language in which the information will be given.
+
+        Returns:
+            str: The channel that the user chose.
+        """
+		print(language.get("channel"))
+		channel = input()
+		channelr = None
+		if channel in Channel.channels:
+			channelr = Channel.channels[channel]
+		if isinstance(channelr, Channel):
+			return channelr
+		else: 
+			print(language.get("ic"))
+			return Client.in_channel(language)
+
+	@staticmethod
+	def show_channels(language):
+		"""If the dict Channel.channels has channels, allows the user to sort and show
+		their information, otherwise, if the dict is empty, shows that there are no 
+		channels. 
+		Args:
+            language (dict): The language in which the information will be given.
+
+        Returns:
+            str: The channels' names if they exist. Otherwise, shows there are none.
+        """
+		if len(Channel.channels):
+			break_while = 0
+			while break_while == 0:
+				print(language.get("sorto"))
+				option = input()
+				if option == "1":
+					break_while1 = 0
+					while break_while1 == 0:
+						print(language.get("sortby"))
+						option1 = input()
+						sorted_channels = None
+						if option1 == "1":
+							sorted_channels = sorted((Channel.channels).values(), key=lambda channel: channel.get_visits(), reverse=True)
+						elif option1 == "2":
+							sorted_channels = sorted((Channel.channels).values(), key=lambda channel: len(channel.get_questions()), reverse=True)
+						else:
+							print(language.get("i"))
+
+						if sorted_channels != None:
+							print(language.get("channels"))
+							for channel in sorted_channels:
+								print(channel.to_string(language))
+							break_while = 1
+							break_while1 = 1
+				elif option == "2":
+					print(language.get("channels"))
+					for channel in Channel.channels:
+						print(Channel.channels[channel].to_string(language))
+					break_while = 1
+				else:
+					print(language.get("i"))
+		else:
+			print(language.get("nchannels"))
+
+	@staticmethod
 	def make_a_question(language, user, channel):
 		"""Asks the user for a description to create a question, creates it and 
 		returns it.
@@ -256,40 +410,98 @@ class Client:
 			print(language.get("nuq"))
 
 	@staticmethod
-	def comment(language, user, q_n):
-		"""Asks the user for a description to create a comment, creates it and 
-		returns it.
+	def search_question(language, channel):
+		"""Allows the user to search for a question based in the logic operators
+		AND, OR and NOT and one or two keywords, depending on the user's choice.
 
 		Args:
-            language (dict): The language in which the information will be given.
-            user (User): The user that creates the questions.
-            q_n (Question/New): The question/new where the comment will be created.
+			language (dict): The language in which the information will be given.
+			channel (Channel): The channel where the question will be searched.
 
-        Returns:
-            Comment: The created comment.
+		Returns:
+			str: The information of the questions that match the search.
 		"""
-		print(language.get("comment"))
-		description = input()
-		comment = Comment(user, q_n, description)
-		return comment
+		w = 0
+		while w == 0:
+			print(language.get("needo"))
+			opt = input()
+			if opt == "1":
+				print(language.get("keyword"))
+				keyword1 = input()
+				print(language.get("keyword"))
+				keyword2 = input()
+				printing = ""
+				print(language.get("selecto"))
+				op = input()
+				if op == "1":
+					for question in channel.get_questions():
+						if (keyword1 in question.get_question()) and (keyword2 in question.get_question()):
+							printing += question.to_string(language)
+				elif op == "2":
+					for question in channel.get_questions():
+						if (keyword1 in question.get_question()) or (keyword2 in question.get_question()):
+							printing += question.to_string(language)
+				elif op == "3":
+					for question in channel.get_questions():
+						if not ((keyword1 in question.get_question()) and (keyword2 in question.get_question())):
+							printing += question.to_string(language)
+				else:
+					print(language.get("i"))
+				if len(printing):
+					print(printing)
+				else:
+					print(language.get("nomatch"))
+				w = 1
+			elif opt == "2":
+				print(language.get("keyword"))
+				keyword1 = input()
+				printing = ""
+				for question in channel.get_questions():
+					if keyword1 in question.get_question():
+						printing += question.to_string(language)
+				if len(printing):
+					print(printing)
+				else:
+					print(language.get("nomatch"))
+				w = 1
+			else:
+				print(language.get("i"))
 
 	@staticmethod
-	def edit_comment(language, comment, user):
-		"""Verifies if the user that wants to edit the comment is the same that 
-		created it and if it is true, allows him/her to perform the action.
-
+	def show_news(language):
+		"""If the dict New.news has news, shows their information, otherwise,
+		shows that there are no news. 
 		Args:
             language (dict): The language in which the information will be given.
-            user (User): The user that creates the questions.
-            comment (Comment): The comment that will be edited.
 
-		"""
-		if comment.check_user(user):
-			print(language.get("comment"))
-			c = input()
-			comment.set_description(c)
+        Returns:
+            str: The news' information if they exist. Otherwise, shows there are none.
+        """
+		if len(New.news):
+			print(language.get("news"))
+			for new in New.news:
+				print(language.get("title1") + str((New.news[new]).get_title()) + "\n" 
+				+ language.get("id") + str((New.news[new]).get_id()))
 		else:
-			print(language.get("nuc"))
+			print(language.get("nnews")) 
+
+	@staticmethod
+	def top_news(language):
+		"""Sorts the New.news dictionary by the news' views and gets the first 
+		10 items to create a top.
+
+		Args:
+			language (dict): The language in which the information will be given.
+
+		Returns:
+			str: Top of news.
+		"""
+		printing = ""
+		sorted_dict  = sorted(New.news, key=lambda new: New.news[new].get_views(), reverse=True)
+		top_dict = sorted_dict[:10]
+		for new in top_dict:
+			printing += New.news[new].to_string(language)
+		return printing
 
 	@staticmethod
 	def upload_a_new(language, admin):
@@ -370,177 +582,40 @@ class Client:
 			print(language.get("nun"))
 
 	@staticmethod
-	def top_news(language):
-		"""Sorts the New.news dictionary by the news' views and gets the first 
-		10 items to create a top.
+	def comment(language, user, q_n):
+		"""Asks the user for a description to create a comment, creates it and 
+		returns it.
 
 		Args:
-			language (dict): The language in which the information will be given.
+            language (dict): The language in which the information will be given.
+            user (User): The user that creates the questions.
+            q_n (Question/New): The question/new where the comment will be created.
 
-		Returns:
-			str: Top of news.
+        Returns:
+            Comment: The created comment.
 		"""
-		printing = ""
-		sorted_dict  = sorted(New.news, key=lambda new: New.news[new].get_views(), reverse=True)
-		top_dict = sorted_dict[:10]
-		for new in top_dict:
-			printing += New.news[new].to_string(language)
-		return printing
+		print(language.get("comment"))
+		description = input()
+		comment = Comment(user, q_n, description)
+		return comment
 
 	@staticmethod
-	def search_question(language, channel):
-		"""Allows the user to search for a question based in the logic operators
-		AND, OR and NOT and one or two keywords, depending on the user's choice.
+	def edit_comment(language, comment, user):
+		"""Verifies if the user that wants to edit the comment is the same that 
+		created it and if it is true, allows him/her to perform the action.
 
 		Args:
-			language (dict): The language in which the information will be given.
-			channel (Channel): The channel where the question will be searched.
+            language (dict): The language in which the information will be given.
+            user (User): The user that creates the questions.
+            comment (Comment): The comment that will be edited.
 
-		Returns:
-			str: The information of the questions that match the search.
 		"""
-		w = 0
-		while w == 0:
-			print(language.get("needo"))
-			opt = input()
-			if opt == "1":
-				print(language.get("keyword"))
-				keyword1 = input()
-				print(language.get("keyword"))
-				keyword2 = input()
-				printing = ""
-				print(language.get("selecto"))
-				op = input()
-				if op == "1":
-					for question in channel.get_questions():
-						if (keyword1 in question.get_question()) and (keyword2 in question.get_question()):
-							printing += question.to_string(language)
-				elif op == "2":
-					for question in channel.get_questions():
-						if (keyword1 in question.get_question()) or (keyword2 in question.get_question()):
-							printing += question.to_string(language)
-				elif op == "3":
-					for question in channel.get_questions():
-						if not ((keyword1 in question.get_question()) and (keyword2 in question.get_question())):
-							printing += question.to_string(language)
-				else:
-					print(language.get("i"))
-				if len(printing):
-					print(printing)
-				else:
-					print(language.get("nomatch"))
-				w = 1
-			elif opt == "2":
-				print(language.get("keyword"))
-				keyword1 = input()
-				printing = ""
-				for question in channel.get_questions():
-					if keyword1 in question.get_question():
-						printing += question.to_string(language)
-				if len(printing):
-					print(printing)
-				else:
-					print(language.get("nomatch"))
-				w = 1
-			else:
-				print(language.get("i"))
-
-	@staticmethod
-	def log_in(language):
-		"""Makes the required verifications for a user to log in and then, if the user
-		passes the verifications, allows him/her to log in.
-
-		Args:
-			language (dict): The language in which the information will be given.
-		"""
-		w = 0
-		attempts = 0
-		while w == 0:
-			print(language.get("username"))
-			username = input()
-			u = None
-			for usernamek in User.users:
-				if username == usernamek:
-					u = User.users.get(usernamek)
-			if isinstance(u, User):
-				print(language.get("password"))
-				password = input()
-				passwordv = u.get_password()
-				w1 = 0
-				pattempts = 1
-				while w1 == 0:
-					if password != passwordv:
-						print(language.get("wp"))
-						print(language.get("password"))
-						password = input()
-						pattempts += 1
-						if pattempts == 3:
-							w2 = 0
-							while w2 == 0:
-								print(language.get("attempts"))
-								opt = input()
-								if opt == "1":
-									print(language.get("lastattempt"))
-									w2 = 1
-								elif opt == "2":
-									w2 = 1
-									w1 = 1
-									w = 1
-									u = None
-								else: 
-									print(language.get("i"))
-						elif pattempts == 4:
-							print(language.get("maxattempts"))
-							w1 = 1
-							w = 1
-							u = None
-					else:
-						w1 = 1
-				if isinstance(u, User):
-					if u.get_ban_state() == 0:
-						w = 1
-					else:
-						print(language.get("ub"))
-						attempts += 1
-			else:
-				print(language.get("iu"))
-				attempts += 1
-
-			if attempts == 3:
-				w1 = 0
-				while w1 == 0:
-					print(language.get("attempts"))
-					opt = input()
-					if opt == "1":
-						print(language.get("lastattempt"))
-						w1 = 1
-					elif opt == "2":
-						w1 = 1
-						w = 1
-					else: 
-						print(language.get("i"))
-			elif attempts == 4:
-				print(language.get("maxattempts"))
-				w = 1
-		return u
-
-	@staticmethod
-	def in_user(language):
-		"""Asks for a username and returns the user if the user's username exists.
-
-		Args:
-			language (dict): The language in which the information will be given.
-
-		Returns:
-			object: A User object if the username exists, otherwise, None.
-		"""
-		print(language.get("inub"))
-		username = input()
-		user_returned = None
-		for username_key in User.users:
-			if username_key == username:
-				user_returned = User.users[username_key]
-		return user_returned
+		if comment.check_user(user):
+			print(language.get("comment"))
+			c = input()
+			comment.set_description(c)
+		else:
+			print(language.get("nuc"))
 
 	@staticmethod
 	def delete_favorite(q_c_n):
@@ -555,60 +630,162 @@ class Client:
 				(User.users[username_key].get_type_fav(q_c_n)).remove(q_c_n)
 
 	@staticmethod
-	def menu_comment(user, q_n, language):
-		"""Displays a menu to interact with the comment(s) of the given question/new.
+	def menu_user(user, language):
+		"""Displays a menu that allows the user to interact with the user's options.
 
 		Args:
 			language (dict): The language in which the information will be given.
-            q_n (Question/New): The question/new's comment.
-            user (User): The user that interacts with the comment(s).
+            user (User): The user that interacts with the user's options.
 
 		"""
 		break_while = 0
-		while break_while == 0:
-			print(q_n.to_string(language))
-			print(q_n.show_comments(language))
-			print(language.get("selectc"))
+		while break_while == 0:   #While n2
+			print(language.get("usero"))
 			option = input()
 			if option == "1":
-				comment = Client.in_id(language, q_n)
-				break_while1 = 0
-				while break_while1 == 0:
-					print(comment.to_string(language))
-					print(language.get("commento"))
-					option1 = input()
-					if option1 == "1":
-						Rating(user, comment, "like")
-					elif option1 == "2":
-						Rating(user, comment, "dislike")
-					elif option1 == "3":
-						print(language.get("l"))
-						print(comment.watch_users_reactions(language, "like"))
-					elif option1 == "4":
-						print(language.get("dl"))
-						print(comment.watch_users_reactions(language, "dislike"))
-					elif option1 == "5":
-						if user.repeated_fav(comment):
-							print(language.get("fhs"))
+				print(user.to_string(language))
+			elif option == "2":
+				Client.menu_user_updates(user, language)
+			elif option == "3":
+				Client.menu_channel(user, language)
+			elif option == "4":
+				Client.menu_new(user, language)
+			elif option == "5":
+				Client.menu_favorites(user, language)
+			elif option == "6":
+				if isinstance(user, Admin):
+					user_to_ban = Client.in_user(language)
+					user_to_ban.set_ban_state(1)
+				else:
+					print(language.get("np"))
+			elif option == "7":
+				print(language.get("username"))
+				username = input()
+				if user.check_username(username):
+					print(language.get("password"))
+					password = input()
+					if user.get_password() == password: 
+						print(language.get("sure"))
+						option1 = input()
+						if option1 == "1":
+							if isinstance(user, Admin):
+								user.delete_admin()
+							else:
+								user.delete_user()
+						elif option1 == "2":
+							print(language.get("redirecting"))
 						else:
-							print(language.get("fs"))
-					elif option1 == "6":
-						Client.edit_comment(language, comment, user)
-					elif option1 == "7":
-						if comment.check_user(user):
-							comment.delete_comment()
-							Client.delete_favorite(comment)
-							print(language.get("cod"))
-						else:
-							print(language.get("np"))
-					elif option1 == "@":   #To go to the previous menu 
-						break_while1 = 1 
+							print(language.get("i"))
 					else:
-						print(language.get("i"))
-			elif option == "@":
-					break_while = 1
-			else: 
+						print(language.get("wp"))
+				else:
+					print(language.get("wu"))
+			elif option == "8":
+				break_while = 1
+			else:
 				print(language.get("i"))
+
+	@staticmethod
+	def menu_user_updates(user, language):
+		"""Displays a menu to interact with the user's updating options.
+
+		Args:
+			language (dict): The language in which the information will be given.
+            user (User): The user that interacts with the updating options.
+
+		"""
+		break_while = 0
+		while break_while == 0:   #While n3
+			print(language.get("updateo"))
+			option = input()
+			if option == "1":
+				if Client.is_user_password(user, language):
+					user.set_name(Client.in_name(language))
+					user.set_username(Client.in_username(language))
+					user.set_email(Client.in_email(language))
+					user.set_password(Client.in_password(language))
+				break_while = 1
+			elif option == "2":	
+				user.set_name(Client.in_name(language))
+				break_while = 1
+			elif option == "3":
+				user.set_username(Client.in_username(language))
+				break_while = 1
+			elif option == "4":
+				user.set_email(Client.in_email(language))
+				break_while = 1
+			elif option == "5":
+				if Client.is_user_password(user, language):
+					user.set_password(Client.in_password(language))
+				break_while = 1
+			elif option == "@":
+				break_while = 1
+			else:
+				print(language.get("i"))
+
+	@staticmethod
+	def menu_channel(user, language):
+		"""Displays a menu to interact with the channel(s).
+
+		Args:
+			language (dict): The language in which the information will be given.
+            user (User): The user that interacts with the channel(s).
+
+		"""
+		Client.show_channels(language)
+		if len(Channel.channels):
+			channel = Client.in_channel(language)
+			channel.increase_visits()
+			break_while = 0
+			while break_while == 0:   #While n3
+				print(channel.to_string(language))
+				print(language.get("channelo"))
+				option = input()
+				if option == "1":
+					if len(channel.get_questions()):
+						Client.search_question(language, channel)  
+						break_while1 = 0
+						while break_while1 == 0:
+							print(language.get("gbp"))
+							option1 = input()
+							if option1 == "@":
+								break_while1 = 1
+							else:
+								print(language.get("i"))
+					else: 
+						print(language.get("nq"))
+				elif option == "2":
+					question = Client.make_a_question(language, user, channel)
+					print(question.to_string(language))
+				elif option == "3":
+					if len(channel.get_questions()):
+						Client.menu_question(user, channel, language)
+					else:
+						print(language.get("nq"))
+				elif option == "4":
+					if len(channel.get_questions()):
+						print(channel.top_questions(language))
+						break_while1 = 0
+						while break_while1 == 0:
+							print(language.get("gbp"))
+							option1 = input()
+							if option1 == "@":
+								break_while1 = 1
+							else:
+								print(language.get("i"))
+					else:
+						print(language.get("nq"))
+				elif option == "5":
+					if isinstance(user, Admin):
+						channel.delete_channel()
+						print(language.get("chd"))
+						break_while = 1
+					else:
+						print(language.get("np"))
+				elif option == "@":
+					break_while = 1
+				else: 
+					print(language.get("i"))
 
 	@staticmethod
 	def menu_question(user, channel, language):
@@ -753,67 +930,60 @@ class Client:
 				print(language.get("i"))
 
 	@staticmethod
-	def menu_channel(user, language):
-		"""Displays a menu to interact with the channel(s).
+	def menu_comment(user, q_n, language):
+		"""Displays a menu to interact with the comment(s) of the given question/new.
 
 		Args:
 			language (dict): The language in which the information will be given.
-            user (User): The user that interacts with the channel(s).
+            q_n (Question/New): The question/new's comment.
+            user (User): The user that interacts with the comment(s).
 
 		"""
-		Client.show_channels(language)
-		if len(Channel.channels):
-			channel = Client.in_channel(language)
-			break_while = 0
-			while break_while == 0:   #While n3
-				print(channel.to_string(language))
-				print(language.get("channelo"))
-				option = input()
-				if option == "1":
-					if len(channel.get_questions()):
-						Client.search_question(language, channel)  
-						break_while1 = 0
-						while break_while1 == 0:
-							print(language.get("gbp"))
-							option1 = input()
-							if option1 == "@":
-								break_while1 = 1
-							else:
-								print(language.get("i"))
-					else: 
-						print(language.get("nq"))
-				elif option == "2":
-					question = Client.make_a_question(language, user, channel)
-					print(question.to_string(language))
-				elif option == "3":
-					if len(channel.get_questions()):
-						Client.menu_question(user, channel, language)
+		break_while = 0
+		while break_while == 0:
+			print(q_n.to_string(language))
+			print(q_n.show_comments(language))
+			print(language.get("selectc"))
+			option = input()
+			if option == "1":
+				comment = Client.in_id(language, q_n)
+				break_while1 = 0
+				while break_while1 == 0:
+					print(comment.to_string(language))
+					print(language.get("commento"))
+					option1 = input()
+					if option1 == "1":
+						Rating(user, comment, "like")
+					elif option1 == "2":
+						Rating(user, comment, "dislike")
+					elif option1 == "3":
+						print(language.get("l"))
+						print(comment.watch_users_reactions(language, "like"))
+					elif option1 == "4":
+						print(language.get("dl"))
+						print(comment.watch_users_reactions(language, "dislike"))
+					elif option1 == "5":
+						if user.repeated_fav(comment):
+							print(language.get("fhs"))
+						else:
+							print(language.get("fs"))
+					elif option1 == "6":
+						Client.edit_comment(language, comment, user)
+					elif option1 == "7":
+						if comment.check_user(user):
+							comment.delete_comment()
+							Client.delete_favorite(comment)
+							print(language.get("cod"))
+						else:
+							print(language.get("np"))
+					elif option1 == "@":   #To go to the previous menu 
+						break_while1 = 1 
 					else:
-						print(language.get("nq"))
-				elif option == "4":
-					if len(channel.get_questions()):
-						print(channel.top_questions(language))
-						break_while1 = 0
-						while break_while1 == 0:
-							print(language.get("gbp"))
-							option1 = input()
-							if option1 == "@":
-								break_while1 = 1
-							else:
-								print(language.get("i"))
-					else:
-						print(language.get("nq"))
-				elif option == "5":
-					if isinstance(user, Admin):
-						channel.delete_channel()
-						print(language.get("chd"))
-						break_while = 1
-					else:
-						print(language.get("np"))
-				elif option == "@":
+						print(language.get("i"))
+			elif option == "@":
 					break_while = 1
-				else: 
-					print(language.get("i"))
+			else: 
+				print(language.get("i"))
 
 	@staticmethod
 	def menu_favorites(user, language):
@@ -847,98 +1017,6 @@ class Client:
 				else: 
 					print(language.get("nfn"))
 			elif option == "@":
-				break_while = 1
-			else:
-				print(language.get("i"))
-
-	@staticmethod
-	def menu_user_updates(user, language):
-		"""Displays a menu to interact with the user's updating options.
-
-		Args:
-			language (dict): The language in which the information will be given.
-            user (User): The user that interacts with the updating options.
-
-		"""
-		break_while = 0
-		while break_while == 0:   #While n3
-			print(language.get("updateo"))
-			option = input()
-			if option == "1":
-				user.set_name(Client.in_name(language))
-				user.set_username(Client.in_username(language))
-				user.set_email(Client.in_email(language))
-				user.set_password(Client.in_password(language))
-				break_while = 1
-			elif option == "2":	
-				user.set_name(Client.in_name(language))
-				break_while = 1
-			elif option == "3":
-				user.set_username(Client.in_username(language))
-				break_while = 1
-			elif option == "4":
-				user.set_email(Client.in_email(language))
-				break_while = 1
-			elif option == "5":
-				user.set_password(Client.in_password(language))
-				break_while = 1
-			elif option == "@":
-				break_while = 1
-			else:
-				print(language.get("i"))
-
-	@staticmethod
-	def menu_user(user, language):
-		"""Displays a menu that allows the user to interact with the user's options.
-
-		Args:
-			language (dict): The language in which the information will be given.
-            user (User): The user that interacts with the user's options.
-
-		"""
-		break_while = 0
-		while break_while == 0:   #While n2
-			print(language.get("usero"))
-			option = input()
-			if option == "1":
-				print(user.to_string(language))
-			elif option == "2":
-				Client.menu_user_updates(user, language)
-			elif option == "3":
-				Client.menu_channel(user, language)
-			elif option == "4":
-				Client.menu_new(user, language)
-			elif option == "5":
-				Client.menu_favorites(user, language)
-			elif option == "6":
-				if isinstance(user, Admin):
-					user_to_ban = Client.in_user(language)
-					user_to_ban.set_ban_state(1)
-				else:
-					print(language.get("np"))
-			elif option == "7":
-				print(language.get("username"))
-				username = input()
-				if user.check_username(username):
-					print(language.get("password"))
-					password = input()
-					if user.get_password() == password: 
-						print(language.get("sure"))
-						option1 = input()
-						if option1 == "1":
-							if isinstance(user, Admin):
-								user.delete_admin()
-							else:
-								user.delete_user()
-						elif option1 == "2":
-							print(language.get("redirecting"))
-						else:
-							print(language.get("i"))
-					else:
-						print(language.get("wp"))
-				else:
-					print(language.get("wu"))
-			elif option == "8":
 				break_while = 1
 			else:
 				print(language.get("i"))
