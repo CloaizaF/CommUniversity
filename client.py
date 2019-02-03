@@ -304,7 +304,7 @@ class Client:
 					return Client.in_id(language)
 		except ValueError:
 			print(language.get("idmb"))
-			return Client.in_id(language)
+			return Client.in_id(language, ch_q_n)
 
 	@staticmethod
 	def in_channel(language):
@@ -341,12 +341,13 @@ class Client:
         """
 		if len(Channel.channels):
 			break_while = 0
-			while break_while == 0:
+			EXIT = 1
+			while break_while != EXIT:
 				print(language.get("sorto"))
 				option = input()
 				if option == "1":
 					break_while1 = 0
-					while break_while1 == 0:
+					while break_while1 != EXIT:
 						print(language.get("sortby"))
 						option1 = input()
 						sorted_channels = None
@@ -361,13 +362,13 @@ class Client:
 							print(language.get("channels"))
 							for channel in sorted_channels:
 								print(channel.to_string(language))
-							break_while = 1
-							break_while1 = 1
+							break_while = EXIT
+							break_while1 = EXIT
 				elif option == "2":
 					print(language.get("channels"))
 					for channel in Channel.channels:
 						print(Channel.channels[channel].to_string(language))
-					break_while = 1
+					break_while = EXIT
 				else:
 					print(language.get("i"))
 		else:
@@ -421,8 +422,9 @@ class Client:
 		Returns:
 			str: The information of the questions that match the search.
 		"""
-		w = 0
-		while w == 0:
+		break_while = 0
+		EXIT = 1
+		while break_while != EXIT:
 			print(language.get("needo"))
 			opt = input()
 			if opt == "1":
@@ -451,7 +453,7 @@ class Client:
 					print(printing)
 				else:
 					print(language.get("nomatch"))
-				w = 1
+				break_while = EXIT
 			elif opt == "2":
 				print(language.get("keyword"))
 				keyword1 = input()
@@ -463,7 +465,7 @@ class Client:
 					print(printing)
 				else:
 					print(language.get("nomatch"))
-				w = 1
+				break_while = EXIT
 			else:
 				print(language.get("i"))
 
@@ -538,8 +540,9 @@ class Client:
 
 		"""
 		if new.check_user(admin):
-			w = 0
-			while w == 0:
+			break_while = 0
+			EXIT = 1
+			while break_while != EXIT:
 				print(language.get("editnew"))
 				opt = input()
 				if opt == "1":
@@ -555,27 +558,27 @@ class Client:
 					print(language.get("label"))
 					label = input()
 					new.set_label(label)
-					w = 1
+					break_while = EXIT
 				elif opt == "2":
 					print(language.get("title"))
 					title = input()
 					new.set_title(title)
-					w = 1
+					break_while = EXIT
 				elif opt == "3":
 					print(language.get("content"))
 					content = input()
 					new.set_content(content)
-					w = 1
+					break_while = EXIT
 				elif opt == "4":
 					print(language.get("author"))
 					author = input()
 					new.set_author(author)
-					w = 1
+					break_while = EXIT
 				elif opt == "5":
 					print(language.get("label"))
 					label = input()
 					new.set_label(label)
-					w = 1
+					break_while = EXIT
 				else:
 					print(language.get("i"))
 		else:
@@ -639,7 +642,8 @@ class Client:
 
 		"""
 		break_while = 0
-		while break_while == 0:   #While n2
+		EXIT = 1
+		while break_while != EXIT:   #While n2
 			print(language.get("usero"))
 			option = input()
 			if option == "1":
@@ -681,7 +685,7 @@ class Client:
 				else:
 					print(language.get("wu"))
 			elif option == "8":
-				break_while = 1
+				break_while = EXIT
 			else:
 				print(language.get("i"))
 
@@ -695,7 +699,8 @@ class Client:
 
 		"""
 		break_while = 0
-		while break_while == 0:   #While n3
+		EXIT = 1
+		while break_while != EXIT:   #While n3
 			print(language.get("updateo"))
 			option = input()
 			if option == "1":
@@ -704,22 +709,22 @@ class Client:
 					user.set_username(Client.in_username(language))
 					user.set_email(Client.in_email(language))
 					user.set_password(Client.in_password(language))
-				break_while = 1
+				break_while = EXIT
 			elif option == "2":	
 				user.set_name(Client.in_name(language))
-				break_while = 1
+				break_while = EXIT
 			elif option == "3":
 				user.set_username(Client.in_username(language))
-				break_while = 1
+				break_while = EXIT
 			elif option == "4":
 				user.set_email(Client.in_email(language))
-				break_while = 1
+				break_while = EXIT
 			elif option == "5":
 				if Client.is_user_password(user, language):
 					user.set_password(Client.in_password(language))
-				break_while = 1
+				break_while = EXIT
 			elif option == "@":
-				break_while = 1
+				break_while = EXIT
 			else:
 				print(language.get("i"))
 
@@ -737,7 +742,8 @@ class Client:
 			channel = Client.in_channel(language)
 			channel.increase_visits()
 			break_while = 0
-			while break_while == 0:   #While n3
+			EXIT = 1
+			while break_while != EXIT:   #While n3
 				print(channel.to_string(language))
 				print(language.get("channelo"))
 				option = input()
@@ -745,11 +751,11 @@ class Client:
 					if len(channel.get_questions()):
 						Client.search_question(language, channel)  
 						break_while1 = 0
-						while break_while1 == 0:
+						while break_while1 != EXIT:
 							print(language.get("gbp"))
 							option1 = input()
 							if option1 == "@":
-								break_while1 = 1
+								break_while1 = EXIT
 							else:
 								print(language.get("i"))
 					else: 
@@ -766,11 +772,11 @@ class Client:
 					if len(channel.get_questions()):
 						print(channel.top_questions(language))
 						break_while1 = 0
-						while break_while1 == 0:
+						while break_while1 != EXIT:
 							print(language.get("gbp"))
 							option1 = input()
 							if option1 == "@":
-								break_while1 = 1
+								break_while1 = EXIT
 							else:
 								print(language.get("i"))
 					else:
@@ -779,11 +785,11 @@ class Client:
 					if isinstance(user, Admin):
 						channel.delete_channel()
 						print(language.get("chd"))
-						break_while = 1
+						break_while = EXIT
 					else:
 						print(language.get("np"))
 				elif option == "@":
-					break_while = 1
+					break_while = EXIT
 				else: 
 					print(language.get("i"))
 
@@ -798,7 +804,8 @@ class Client:
 
 		"""
 		break_while = 0
-		while break_while == 0:
+		EXIT = 1
+		while break_while != EXIT:
 			print(channel.to_string1(language))
 			print(language.get("selectq"))
 			option = input()
@@ -806,7 +813,7 @@ class Client:
 				question = Client.in_id(language, channel)
 				question.increase_views()
 				break_while1 = 0
-				while break_while1 == 0:
+				while break_while1 != EXIT:
 					print(question.to_string(language))
 					print(language.get("questiono"))
 					option1 = input()
@@ -842,13 +849,13 @@ class Client:
 							print(language.get("qd"))
 						else:
 							print(language.get("np"))
-							break_while1 = 1
+						break_while1 = EXIT
 					elif option1 == "@":
-						break_while1 = 1
+						break_while1 = EXIT
 					else:
 						print(language.get("i"))
 			elif option == "@":   #To go to the previous menu 
-				break_while = 1 
+				break_while = EXIT
 			else:
 				print(language.get("i"))
 
@@ -861,8 +868,10 @@ class Client:
             user (User): The user that interacts with the new(s).
 
 		"""
-		Client.show_news(language)
-		if len(New.news):
+		break_while = 0
+		EXIT = 1
+		while break_while != EXIT:
+			print(language.get("News"))
 			print(language.get("selectn"))
 			option = input()
 			if option == "1":
@@ -870,69 +879,72 @@ class Client:
 					new = Client.upload_a_new(language, user)
 				else:
 					print(language.get("np"))
+				break_while = EXIT
 			elif option == "2":
-				new = Client.in_id(language)
-				new.increase_views()
-				break_while1 = 0
-				while break_while1 == 0:
-					print(new.to_string(language))
-					print(language.get("newo"))
-					option1 = input()
-					if option1 == "1":
-						comment = Client.comment(language, user, new)
-						print(comment.to_string(language))
-					elif option1 == "2":
-						if len(new.show_comments(language)): 
-							Client.menu_comment(user, new, language)
+				if len(New.news):
+					Client.show_news(language)
+					new = Client.in_id(language)
+					new.increase_views()
+					break_while1 = 0
+					while break_while1 != EXIT:
+						print(new.to_string(language))
+						print(language.get("newo"))
+						option1 = input()
+						if option1 == "1":
+							comment = Client.comment(language, user, new)
+							print(comment.to_string(language))
+						elif option1 == "2":
+							if len(new.show_comments(language)): 
+								Client.menu_comment(user, new, language)
+							else:
+								print(language.get("ncn"))
+						elif option1 == "3":
+							Rating(user, new, "like")
+						elif option1 == "4":
+							Rating(user, new, "dislike")
+						elif option1 == "5":
+							print(language.get("l"))
+							print(new.watch_users_reactions(language, "like"))
+						elif option1 == "6":
+							print(language.get("dl"))
+							print(new.watch_users_reactions(language, "dislike"))
+						elif option1 == "7":
+							if user.repeated_fav(new):
+								print(language.get("fhs"))
+							else:
+								print(language.get("fs"))
+						elif option1 == "8":
+							Client.edit_new(language, new, user)
+						elif option1 == "9":
+							if new.check_user(user):
+								new.delete_new()
+								print(language.get("nd"))
+							else:
+								print(language.get("np"))
+							break_while1 = EXIT
+						elif option1 == "@":
+							break_while1 = EXIT
 						else:
-							print(language.get("ncn"))
-					elif option1 == "3":
-						Rating(user, new, "like")
-					elif option1 == "4":
-						Rating(user, new, "dislike")
-					elif option1 == "5":
-						print(language.get("l"))
-						print(new.watch_users_reactions(language, "like"))
-					elif option1 == "6":
-						print(language.get("dl"))
-						print(new.watch_users_reactions(language, "dislike"))
-					elif option1 == "7":
-						if user.repeated_fav(new):
-							print(language.get("fhs"))
-						else:
-							print(language.get("fs"))
-					elif option1 == "8":
-						Client.edit_new(language, new, user)
-					elif option1 == "9":
-						if new.check_user(user):
-							new.delete_new()
-							print(language.get("nd"))
-						else:
-							print(language.get("np"))
-						break_while1 = 1 
-					elif option1 == "@":
-						break_while1 = 1
-					else:
-						print(language.get("i"))
+							print(language.get("i"))
 			elif option == "3":
 				print(Client.top_news(language))
 				break_while1 = 0
-				while break_while1 == 0:
+				EXIT = 1
+				while break_while1 != EXIT:
 					print(language.get("gbp"))
 					option1 = input()
 					if option1 == "@":
-						break_while1 = 1
+						break_while1 = EXIT
 					else:
 						print(language.get("i"))
 			elif option == "@":
-				break_while = 1
+				break_while = EXIT
 			else:
 				print(language.get("i"))
 
 	@staticmethod
 	def menu_comment(user, q_n, language):
 		"""Displays a menu to interact with the comment(s) of the given question/new.
-
 		Args:
 			language (dict): The language in which the information will be given.
             q_n (Question/New): The question/new's comment.
@@ -940,7 +952,8 @@ class Client:
 
 		"""
 		break_while = 0
-		while break_while == 0:
+		EXIT = 1
+		while break_while != EXIT:
 			print(q_n.to_string(language))
 			print(q_n.show_comments(language))
 			print(language.get("selectc"))
@@ -948,7 +961,7 @@ class Client:
 			if option == "1":
 				comment = Client.in_id(language, q_n)
 				break_while1 = 0
-				while break_while1 == 0:
+				while break_while1 != EXIT:
 					print(comment.to_string(language))
 					print(language.get("commento"))
 					option1 = input()
@@ -976,12 +989,13 @@ class Client:
 							print(language.get("cod"))
 						else:
 							print(language.get("np"))
+						break_while1 = EXIT
 					elif option1 == "@":   #To go to the previous menu 
-						break_while1 = 1 
+						break_while1 = EXIT
 					else:
 						print(language.get("i"))
 			elif option == "@":
-					break_while = 1
+					break_while = EXIT
 			else: 
 				print(language.get("i"))
 
@@ -995,7 +1009,8 @@ class Client:
 
 		"""
 		break_while = 0
-		while break_while == 0:
+		EXIT = 1
+		while break_while != EXIT:
 			print(language.get("favo"))
 			option = input()
 			if option == "1":
@@ -1017,7 +1032,7 @@ class Client:
 				else: 
 					print(language.get("nfn"))
 			elif option == "@":
-				break_while = 1
+				break_while = EXIT
 			else:
 				print(language.get("i"))
 
@@ -1110,7 +1125,7 @@ class Client:
 			email = readfile[index_e+7:index_s2]
 			password = readfile[index_p+10:index_s3]
 
-			u = User(name, username, email, password)
+			user = User(name, username, email, password)
 			index_n = readfile.find(name_f, index_s3)
 		file.close()
 

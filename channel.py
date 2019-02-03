@@ -102,4 +102,4 @@ class Channel:
 		top_list = sorted_list[:10]
 		for question in top_list:
 			printing += question.to_string(language)
-		return printin
+		return printing
