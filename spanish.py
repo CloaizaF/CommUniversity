@@ -240,5 +240,17 @@ class Spanish:
 	"idmb": "\t\tEl id debe ser un número entero.", 
 	"inputtabs": "\t\t",
 	"uab": "\t\tEl usuario ya está expulsado.",
-	"unb": "\t\tEste usuario no está expulsado."
+	"unb": "\t\tEste usuario no está expulsado.",
+	"proupd": "\t\tPerfil actualizado",
+	"usupd": "\t\tNombre de usuario actualizado",
+	"nupd": "\t\tNombre actualizado",
+	"pupd": "\t\tContraseña actualizada",
+	"eupd": "\t\tCorreo actualizado",
+	"newupd": "\t\tNoticia actualizada",
+	"titleupd": "\t\tTitulo actualizado",
+	"contentupd": "\t\tContenido actualizado",
+	"authorupd": "\t\tAuthor actualizado",
+	"labelupd": "\t\tCategoría actualizada",
+	"questionupd": "\t\tPregunta actualizada",
+	"commentupd": "\t\tComentario actualizado",
 	}

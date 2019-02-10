@@ -219,7 +219,6 @@ class Client:
 		else:
 			return user_returned
 
-
 	@staticmethod
 	def is_user_password(user, language):
 		"""Asks the user for his/her last password and checks if it is the true 
@@ -420,6 +419,7 @@ class Client:
 			print(language.get("question"))
 			q = input(language.get("inputtabs"))
 			question.set_question(q)
+			print(language.get("questionupd"))
 		else:
 			print(language.get("nuq"))
 
@@ -630,6 +630,7 @@ class Client:
 			print(language.get("comment"))
 			c = input(language.get("inputtabs"))
 			comment.set_description(c)
+			print(language.get("commentupd"))
 		else:
 			print(language.get("nuc"))
 
@@ -727,7 +728,7 @@ class Client:
 		"""
 		break_while = 0
 		EXIT = 1
-		while break_while != EXIT:   #While n3
+		while break_while != EXIT:
 			print(language.get("updateo"))
 			option = input(language.get("inputtabs"))
 			if option == "1":
@@ -736,19 +737,24 @@ class Client:
 					user.set_username(Client.in_username(language))
 					user.set_email(Client.in_email(language))
 					user.set_password(Client.in_password(language))
+				print(language.get("proupd"))
 				break_while = EXIT
 			elif option == "2":	
 				user.set_name(Client.in_name(language))
+				print(language.get("nupd"))
 				break_while = EXIT
 			elif option == "3":
 				user.set_username(Client.in_username(language))
+				print(language.get("usupd"))
 				break_while = EXIT
 			elif option == "4":
 				user.set_email(Client.in_email(language))
+				print(language.get("eupd"))
 				break_while = EXIT
 			elif option == "5":
 				if Client.is_user_password(user, language):
 					user.set_password(Client.in_password(language))
+					print(language.get("pupd"))
 				break_while = EXIT
 			elif option == "@":
 				break_while = EXIT

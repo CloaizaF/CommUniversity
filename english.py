@@ -238,5 +238,17 @@ class English:
 	"idmb": "\t\tThe id must be an integer number.",
 	"inputtabs": "\t\t",
 	"uab": "\t\tUser already banned.",
-	"unb": "\t\tThis user is not banned."
+	"unb": "\t\tThis user is not banned.",
+	"proupd": "\t\tProfile updated",
+	"usupd": "\t\tUsername updated",
+	"nupd": "\t\tName updated",
+	"pupd": "\t\tPassword updated",
+	"eupd": "\t\tEmail updated",
+	"newupd": "\t\tNew updated",
+	"titleupd": "\t\tTitle updated",
+	"contentupd": "\t\tContent updated",
+	"authorupd": "\t\tAuthor updated",
+	"labelupd": "\t\tLabel updated",
+	"questionupd": "\t\tQuestion updated",
+	"commentupd": "\t\tComment updated",
 	}
