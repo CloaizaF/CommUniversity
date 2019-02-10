@@ -20,8 +20,9 @@ class Spanish:
 		4. Leer algunas noticias
 		5. Revisar mis favoritos
 		6. Expulsar un usuario
-		7. Eliminar mi cuenta
-		8. Salir
+		7. Reintegrar un usuario
+		8. Eliminar mi cuenta
+		9. Salir
 		""",
 	"favo": """
 		¿Que quieres hacer?
@@ -127,6 +128,11 @@ class Spanish:
 		1. Sí
 		2. No
 		""",
+	"pattemps":"""
+		Ya has ingresado contraseñas 3 veces, ¿quieres intentarlo una vez mas?
+		1. Sí
+		2. No
+		""",
 	"sure": """
 		Estas segur@ de que quieres eliminar tu cuenta?
 		1. Sí, quiero eliminar mi cuenta
@@ -143,6 +149,7 @@ class Spanish:
 		2. El número de preguntas del canal
 		""",
 	"maxattempts": "\t\tYa has tratado de ingresar 4 veces, te redireccionaremos al menu principal",
+	"maxpattempts": "\t\tYa has escrito contraseñas 4 veces, te redireccionaremos al menu principal",
 	"lastattempt": "\t\tUltimo intento antes de redireccionarte",
 	"i": "\t\tLa opcion elegida es incorrecta, por favor elija otra opcion.",
 	"keyword": "\t\tIngrese la palabra clave: ",
@@ -218,7 +225,10 @@ class Spanish:
 	"lo": "\t\tRegresa pronto.",
 	"np": "\t\tNo tienes permiso para realizar esta acción",
 	"ub": "\t\tTu usuario actualmente está excluido, por lo tanto, no puedes ingresar",
+	"ub1": "\t\tUsuario expulsado",
+	"unub": "\t\tUsuario reintegrado",
 	"inub": "\t\tIngresa el usuario que será expulsado",
+	"inunb": "\t\tIngresa el usuario que será reintegrado",
 	"chd": "\t\tCanal eliminado",
 	"qd": "\t\tPregunta eliminada",
 	"cod": "\t\tComentario eliminado",
@@ -229,4 +239,6 @@ class Spanish:
 	"redirecting": "\t\tRedireccionandote al menu anterior",
 	"idmb": "\t\tEl id debe ser un número entero.", 
 	"inputtabs": "\t\t",
+	"uab": "\t\tEl usuario ya está expulsado.",
+	"unb": "\t\tEste usuario no está expulsado."
 	}

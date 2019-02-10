@@ -7,6 +7,7 @@ class User:
 
 
     users = {}
+    banned_users = {} 
 
     def __init__(self, name, username, email, password):
         """Attributes:
@@ -31,7 +32,7 @@ class User:
         self._favorites = {"comments": [], "questions": [], "news": []}
         self.set_num_of_questions(0)
         self.set_num_of_comments(0)
-        self.set_ban_state(0)    
+        self.set_ban_state(False)    
 
     def set_name(self, name): 
         self._name = name
@@ -198,9 +199,16 @@ class User:
         return printing
 
     def ban(self):
-        """Invokes self.set_ban_state() to change the _ban_state of the user.
+        """Changes the _ban_state of the user to ban a user.
         """
-        self.set_ban_state(1)
+        self._ban_state = True
+        User.banned_users[self._username] = self
+
+    def unban(self):
+    	"""Changes the _ban_state of the user to ban a user.
+    	"""
+    	self._ban_state = False
+    	del User.banned_users[self._username]
 
     @staticmethod
     def delete_favorite(q_c_n):

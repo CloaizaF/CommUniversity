@@ -157,57 +157,68 @@ class Client:
 								else: 
 									print(language.get("i"))
 						elif pattempts == 4:
-							print(language.get("maxattempts"))
+							print(language.get("maxpattempts"))
 							break_while1 = EXIT
 							break_while = EXIT
 							u = None
 					else:
 						break_while1 = EXIT
 				if isinstance(u, User):
-					if u.get_ban_state() == 0:
-						break_while = EXIT
-					else:
+					if u.get_ban_state():
 						print(language.get("ub"))
 						attempts += 1
+					else:
+						break_while = EXIT
 			else:
 				print(language.get("iu"))
 				attempts += 1
 
-			if attempts == 3:
-				w1 = 0
-				while w1 == 0:
+			if attempts == 3 and u == None:
+				break_while1 = 0
+				while break_while1 != EXIT:
 					print(language.get("attempts"))
 					opt = input(language.get("inputtabs"))
 					if opt == "1":
 						print(language.get("lastattempt"))
-						w1 = 1
+						break_while1 = EXIT
 					elif opt == "2":
-						w1 = 1
+						break_while1 = EXIT
 						break_while = EXIT
 					else: 
 						print(language.get("i"))
-			elif attempts == 4:
+			elif attempts == 4 and u == None:
 				print(language.get("maxattempts"))
 				break_while = EXIT
 		return u
 
 	@staticmethod
-	def in_user(language):
+	def in_user_ban(language, to_ban):
 		"""Asks for a username and returns the user if the user's username exists.
 
 		Args:
 			language (dict): The language in which the information will be given.
+			to_ban (str): The string that indicates if teh user will be banned 
+				or unbanned.
 
 		Returns:
-			object: A User object if the username exists, otherwise, None.
+			object: A User object if the username exists, otherwise, calls itself 
+				once again to get valid input.
 		"""
-		print(language.get("inub"))
+		if to_ban == "ban":
+			print(language.get("inub"))
+		elif to_ban == "unban":
+			print(language.get("inunb"))
 		username = input(language.get("inputtabs"))
 		user_returned = None
 		for username_key in User.users:
 			if username_key == username:
 				user_returned = User.users[username_key]
-		return user_returned
+		if user_returned == None:
+			print(language.get("iu"))
+			return Client.in_user_ban(language, to_ban)
+		else:
+			return user_returned
+
 
 	@staticmethod
 	def is_user_password(user, language):
@@ -660,11 +671,25 @@ class Client:
 				Client.menu_favorites(user, language)
 			elif option == "6":
 				if isinstance(user, Admin):
-					user_to_ban = Client.in_user(language)
-					user_to_ban.set_ban_state(1)
+					user_to_ban = Client.in_user_ban(language, "ban")
+					if user_to_ban.get_ban_state():
+						print(language.get("uab"))
+					else:
+						user_to_ban.ban()
+						print(language.get("ub1"))
 				else:
 					print(language.get("np"))
 			elif option == "7":
+				if isinstance(user, Admin):
+					user_to_unban = Client.in_user_ban(language, "unban")
+					if user_to_unban.get_ban_state():
+						user_to_unban.unban()
+						print(language.get("unub"))
+					else:
+						print(language.get("unb"))
+				else:
+					print(language.get("np"))
+			elif option == "8":
 				print(language.get("username"))
 				username = input(language.get("inputtabs"))
 				if user.check_username(username):
@@ -686,7 +711,7 @@ class Client:
 						print(language.get("wp"))
 				else:
 					print(language.get("wu"))
-			elif option == "8":
+			elif option == "9":
 				break_while = EXIT
 			else:
 				print(language.get("i"))

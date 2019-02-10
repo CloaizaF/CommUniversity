@@ -20,8 +20,9 @@ class English:
 		4. Read some news
 		5. Check my favorites
 		6. Ban a user
-		7. Delete my account
-		8. Log out
+		7. Unban a user
+		8. Delete my account
+		9. Log out
 		""",
 	"favo": """
 		What do you want to do?
@@ -127,6 +128,11 @@ class English:
 		1. Yes
 		2. No
 		""",
+	"pattemps":"""
+		You have already inserted passwords 3 times, do you want to try once more?
+		1. Yes
+		2. No
+		""",
 	"sure": """
 		Are you sure you want to delete your account?
 		1. Yes, I want to delete my account
@@ -143,6 +149,7 @@ class English:
 		2. Channel's number of questions
 		""",
 	"maxattempts": "\t\tYou have already tried to log in 4 times, we will redirect you to the main menu",
+	"maxpattempts": "\t\tYou have already typed passwords 4 times, we will redirect you to the main menu",
 	"lastattempt": "\t\tLast attempt before redirecting you",
 	"i": "\t\tThe option selected is invalid, please choose a valid option.",
 	"keyword": "\t\tInsert the keyword: ",
@@ -216,7 +223,10 @@ class English:
 	"lo": "\t\tCome back soon",
 	"np": "\t\tYou have no permission to make this action",
 	"ub": "\t\tYour user is currently banned, thus, you can not log in",
+	"ub1": "\t\tUser banned",
+	"unub": "\t\tUser unbanned",
 	"inub": "\t\tInsert the username who will be banned",
+	"inunb": "\t\tInsert the username who will be unbanned",
 	"chd": "\t\tChannel deleted",
 	"qd": "\t\tQuestion deleted",
 	"cod": "\t\tComment deleted",
@@ -227,4 +237,6 @@ class English:
 	"redirecting": "\t\tRedirecting you to the previous menu",
 	"idmb": "\t\tThe id must be an integer number.",
 	"inputtabs": "\t\t",
+	"uab": "\t\tUser already banned.",
+	"unb": "\t\tThis user is not banned."
 	}
