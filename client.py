@@ -26,7 +26,7 @@ class Client:
             str: The user's name.
 		"""
 		print(language.get("name"))
-		name = input()
+		name = input(language.get("inputtabs"))
 		return name
 
 	@staticmethod
@@ -41,7 +41,7 @@ class Client:
             str: The user's username.
 		"""
 		print(language.get("username"))
-		username = input()
+		username = input(language.get("inputtabs"))
 		for usernamek in User.users:
 			if username == usernamek:
 				print(language.get("una"))
@@ -60,9 +60,9 @@ class Client:
             str: The user's email.
         """
 		print(language.get("email"))
-		email = input()
+		email = input(language.get("inputtabs"))
 		print(language.get("email2"))
-		email2 = input()
+		email2 = input(language.get("inputtabs"))
 		if email != email2:
 			print(language.get("edm"))
 			return Client.in_email(language)
@@ -84,9 +84,9 @@ class Client:
             str: The user's password.
         """
 		print(language.get("password"))
-		password = input()
+		password = input(language.get("inputtabs"))
 		print(language.get("password2"))
-		password2 = input()
+		password2 = input(language.get("inputtabs"))
 		if(password != password2):
 			print(language.get("pdm"))
 			return Client.in_password(language)
@@ -124,14 +124,14 @@ class Client:
 		attempts = 0
 		while break_while != EXIT:
 			print(language.get("username"))
-			username = input()
+			username = input(language.get("inputtabs"))
 			u = None
 			for usernamek in User.users:
 				if username == usernamek:
 					u = User.users.get(usernamek)
 			if isinstance(u, User):
 				print(language.get("password"))
-				password = input()
+				password = input(language.get("inputtabs"))
 				passwordv = u.get_password()
 				break_while1 = 0
 				pattempts = 1
@@ -139,13 +139,13 @@ class Client:
 					if password != passwordv:
 						print(language.get("wp"))
 						print(language.get("password"))
-						password = input()
+						password = input(language.get("inputtabs"))
 						pattempts += 1
 						if pattempts == 3:
 							break_while2 = 0
 							while break_while2 != EXIT:
 								print(language.get("attempts"))
-								opt = input()
+								opt = input(language.get("inputtabs"))
 								if opt == "1":
 									print(language.get("lastattempt"))
 									break_while2 = EXIT
@@ -177,7 +177,7 @@ class Client:
 				w1 = 0
 				while w1 == 0:
 					print(language.get("attempts"))
-					opt = input()
+					opt = input(language.get("inputtabs"))
 					if opt == "1":
 						print(language.get("lastattempt"))
 						w1 = 1
@@ -202,7 +202,7 @@ class Client:
 			object: A User object if the username exists, otherwise, None.
 		"""
 		print(language.get("inub"))
-		username = input()
+		username = input(language.get("inputtabs"))
 		user_returned = None
 		for username_key in User.users:
 			if username_key == username:
@@ -223,7 +223,7 @@ class Client:
 				False.
 		"""
 		print(language.get("oldpassword"))
-		password = input()
+		password = input(language.get("inputtabs"))
 		true_password = user.get_password()
 		break_while = 0
 		EXIT = 1
@@ -232,13 +232,13 @@ class Client:
 			if password != true_password:
 				print(language.get("wp"))
 				print(language.get("oldpassword"))
-				password = input()
+				password = input(language.get("inputtabs"))
 				pattempts += 1
 				if pattempts == 3:
 					break_while1 = 0
 					while break_while1 != EXIT:
 						print(language.get("attempts"))
-						opt = input()
+						opt = input(language.get("inputtabs"))
 						if opt == "1":
 							print(language.get("lastattempt"))
 							break_while1 = EXIT
@@ -273,7 +273,7 @@ class Client:
 		"""
 		try:
 			print(language.get("idin"))
-			id_inserted = int(input())  
+			id_inserted = int(input(language.get("inputtabs")))  
 			if isinstance(ch_q_n, Channel):
 				question_returned = None
 				for question in ch_q_n.get_questions():   
@@ -320,7 +320,7 @@ class Client:
             str: The channel that the user chose.
         """
 		print(language.get("channel"))
-		channel = input()
+		channel = input(language.get("inputtabs"))
 		channelr = None
 		if channel in Channel.channels:
 			channelr = Channel.channels[channel]
@@ -346,12 +346,12 @@ class Client:
 			EXIT = 1
 			while break_while != EXIT:
 				print(language.get("sorto"))
-				option = input()
+				option = input(language.get("inputtabs"))
 				if option == "1":
 					break_while1 = 0
 					while break_while1 != EXIT:
 						print(language.get("sortby"))
-						option1 = input()
+						option1 = input(language.get("inputtabs"))
 						sorted_channels = None
 						if option1 == "1":
 							sorted_channels = sorted((Channel.channels).values(), key=lambda channel: channel.get_visits(), reverse=True)
@@ -390,7 +390,7 @@ class Client:
             Question: The created question.
 		"""
 		print(language.get("question"))
-		description = input()
+		description = input(language.get("inputtabs"))
 		question = Question(user, channel, description)
 		return question
 
@@ -407,7 +407,7 @@ class Client:
 		"""
 		if question.check_user(user):
 			print(language.get("question"))
-			q = input()
+			q = input(language.get("inputtabs"))
 			question.set_question(q)
 		else:
 			print(language.get("nuq"))
@@ -428,15 +428,15 @@ class Client:
 		EXIT = 1
 		while break_while != EXIT:
 			print(language.get("needo"))
-			opt = input()
+			opt = input(language.get("inputtabs"))
 			if opt == "1":
 				print(language.get("keyword"))
-				keyword1 = input()
+				keyword1 = input(language.get("inputtabs"))
 				print(language.get("keyword"))
-				keyword2 = input()
+				keyword2 = input(language.get("inputtabs"))
 				printing = ""
 				print(language.get("selecto"))
-				op = input()
+				op = input(language.get("inputtabs"))
 				if op == "1":
 					for question in channel.get_questions():
 						if (keyword1 in question.get_question()) and (keyword2 in question.get_question()):
@@ -458,7 +458,7 @@ class Client:
 				break_while = EXIT
 			elif opt == "2":
 				print(language.get("keyword"))
-				keyword1 = input()
+				keyword1 = input(language.get("inputtabs"))
 				printing = ""
 				for question in channel.get_questions():
 					if keyword1 in question.get_question():
@@ -520,13 +520,13 @@ class Client:
             New: The created new.
 		"""
 		print(language.get("title"))
-		title = input()
+		title = input(language.get("inputtabs"))
 		print(language.get("content"))
-		content = input()
+		content = input(language.get("inputtabs"))
 		print(language.get("author"))
-		author = input()
+		author = input(language.get("inputtabs"))
 		print(language.get("label"))
-		label = input()
+		label = input(language.get("inputtabs"))
 		new = New(admin, title, content, author, label)
 		return new 
 
@@ -546,39 +546,39 @@ class Client:
 			EXIT = 1
 			while break_while != EXIT:
 				print(language.get("editnew"))
-				opt = input()
+				opt = input(language.get("inputtabs"))
 				if opt == "1":
 					print(language.get("title"))
-					title = input()
+					title = input(language.get("inputtabs"))
 					new.set_title(title)
 					print(language.get("content"))
-					content = input()
+					content = input(language.get("inputtabs"))
 					new.set_content(content)
 					print(language.get("author"))
-					author = input()
+					author = input(language.get("inputtabs"))
 					new.set_author(author)
 					print(language.get("label"))
-					label = input()
+					label = input(language.get("inputtabs"))
 					new.set_label(label)
 					break_while = EXIT
 				elif opt == "2":
 					print(language.get("title"))
-					title = input()
+					title = input(language.get("inputtabs"))
 					new.set_title(title)
 					break_while = EXIT
 				elif opt == "3":
 					print(language.get("content"))
-					content = input()
+					content = input(language.get("inputtabs"))
 					new.set_content(content)
 					break_while = EXIT
 				elif opt == "4":
 					print(language.get("author"))
-					author = input()
+					author = input(language.get("inputtabs"))
 					new.set_author(author)
 					break_while = EXIT
 				elif opt == "5":
 					print(language.get("label"))
-					label = input()
+					label = input(language.get("inputtabs"))
 					new.set_label(label)
 					break_while = EXIT
 				else:
@@ -600,7 +600,7 @@ class Client:
             Comment: The created comment.
 		"""
 		print(language.get("comment"))
-		description = input()
+		description = input(language.get("inputtabs"))
 		comment = Comment(user, q_n, description)
 		return comment
 
@@ -617,7 +617,7 @@ class Client:
 		"""
 		if comment.check_user(user):
 			print(language.get("comment"))
-			c = input()
+			c = input(language.get("inputtabs"))
 			comment.set_description(c)
 		else:
 			print(language.get("nuc"))
@@ -647,7 +647,7 @@ class Client:
 		EXIT = 1
 		while break_while != EXIT:   #While n2
 			print(language.get("usero"))
-			option = input()
+			option = input(language.get("inputtabs"))
 			if option == "1":
 				print(user.to_string(language))
 			elif option == "2":
@@ -666,13 +666,13 @@ class Client:
 					print(language.get("np"))
 			elif option == "7":
 				print(language.get("username"))
-				username = input()
+				username = input(language.get("inputtabs"))
 				if user.check_username(username):
 					print(language.get("password"))
-					password = input()
+					password = input(language.get("inputtabs"))
 					if user.get_password() == password: 
 						print(language.get("sure"))
-						option1 = input()
+						option1 = input(language.get("inputtabs"))
 						if option1 == "1":
 							if isinstance(user, Admin):
 								user.delete_admin()
@@ -704,7 +704,7 @@ class Client:
 		EXIT = 1
 		while break_while != EXIT:   #While n3
 			print(language.get("updateo"))
-			option = input()
+			option = input(language.get("inputtabs"))
 			if option == "1":
 				if Client.is_user_password(user, language):
 					user.set_name(Client.in_name(language))
@@ -748,14 +748,14 @@ class Client:
 			while break_while != EXIT:   #While n3
 				print(channel.to_string(language))
 				print(language.get("channelo"))
-				option = input()
+				option = input(language.get("inputtabs"))
 				if option == "1":
 					if len(channel.get_questions()):
 						Client.search_question(language, channel)  
 						break_while1 = 0
 						while break_while1 != EXIT:
 							print(language.get("gbp"))
-							option1 = input()
+							option1 = input(language.get("inputtabs"))
 							if option1 == "@":
 								break_while1 = EXIT
 							else:
@@ -776,7 +776,7 @@ class Client:
 						break_while1 = 0
 						while break_while1 != EXIT:
 							print(language.get("gbp"))
-							option1 = input()
+							option1 = input(language.get("inputtabs"))
 							if option1 == "@":
 								break_while1 = EXIT
 							else:
@@ -810,7 +810,7 @@ class Client:
 		while break_while != EXIT:
 			print(channel.to_string1(language))
 			print(language.get("selectq"))
-			option = input()
+			option = input(language.get("inputtabs"))
 			if option == "1":
 				question = Client.in_id(language, channel)
 				question.increase_views()
@@ -818,7 +818,7 @@ class Client:
 				while break_while1 != EXIT:
 					print(question.to_string(language))
 					print(language.get("questiono"))
-					option1 = input()
+					option1 = input(language.get("inputtabs"))
 					if option1 == "1":
 						comment = Client.comment(language, user, question)
 						print(comment.to_string(language))
@@ -875,7 +875,7 @@ class Client:
 		while break_while != EXIT:
 			print(language.get("News"))
 			print(language.get("selectn"))
-			option = input()
+			option = input(language.get("inputtabs"))
 			if option == "1":
 				if isinstance(user, Admin):
 					new = Client.upload_a_new(language, user)
@@ -891,7 +891,7 @@ class Client:
 					while break_while1 != EXIT:
 						print(new.to_string(language))
 						print(language.get("newo"))
-						option1 = input()
+						option1 = input(language.get("inputtabs"))
 						if option1 == "1":
 							comment = Client.comment(language, user, new)
 							print(comment.to_string(language))
@@ -934,7 +934,7 @@ class Client:
 				EXIT = 1
 				while break_while1 != EXIT:
 					print(language.get("gbp"))
-					option1 = input()
+					option1 = input(language.get("inputtabs"))
 					if option1 == "@":
 						break_while1 = EXIT
 					else:
@@ -959,14 +959,14 @@ class Client:
 			print(q_n.to_string(language))
 			print(q_n.show_comments(language))
 			print(language.get("selectc"))
-			option = input()
+			option = input(language.get("inputtabs"))
 			if option == "1":
 				comment = Client.in_id(language, q_n)
 				break_while1 = 0
 				while break_while1 != EXIT:
 					print(comment.to_string(language))
 					print(language.get("commento"))
-					option1 = input()
+					option1 = input(language.get("inputtabs"))
 					if option1 == "1":
 						Rating(user, comment, "like")
 					elif option1 == "2":
@@ -1014,7 +1014,7 @@ class Client:
 		EXIT = 1
 		while break_while != EXIT:
 			print(language.get("favo"))
-			option = input()
+			option = input(language.get("inputtabs"))
 			if option == "1":
 				favorites = user.watch_fav(language, "question")
 				if len(favorites):
@@ -1046,7 +1046,7 @@ class Client:
 		attempts_to_generate_datat = True
 		while True: 
 			print(language.get("mm"))
-			option = input()	
+			option = input(language.get("inputtabs"))	
 			if option == "1":   
 				user = Client.sign_in(language)
 			elif option == "2":   
@@ -1155,7 +1155,7 @@ class Client:
 
 		"""
 		print(Message.select_language.get("languages"))
-		option = input()
+		option = input(Message.select_language.get("inputtabs"))
 		if option == "1":
 			language = English.english
 		elif option == "2" :

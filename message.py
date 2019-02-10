@@ -9,5 +9,6 @@ class Message:
 	    1. English
 	    2. Spanish
 	    """,
-	"i": "The option selected is invalid, please choose a valid option."
+	"inputtabs": "\t\t",
+	"i": "\t\tThe option selected is invalid, please choose a valid option."
 	}
