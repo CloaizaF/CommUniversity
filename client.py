@@ -6,6 +6,8 @@ from comment import Comment
 from new import New
 from rating import Rating
 from message import Message
+from spanish import Spanish
+from english import English
 import os
 import random
 
@@ -1152,14 +1154,14 @@ class Client:
 			dict: The language in which the information will be given.
 
 		"""
-		print(Message.MD.get("languages"))
+		print(Message.select_language.get("languages"))
 		option = input()
 		if option == "1":
-			language = Message.ME
+			language = English.english
 		elif option == "2" :
-			language = Message.MS
+			language = Spanish.spanish
 		else:
-			print(Message.MD.get("i"))
+			print(Message.select_language.get("i"))
 			return Client.language()
 		return language
 
