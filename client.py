@@ -978,6 +978,7 @@ class Client:
 	@staticmethod
 	def menu_comment(user, q_n, language):
 		"""Displays a menu to interact with the comment(s) of the given question/new.
+		
 		Args:
 			language (dict): The language in which the information will be given.
             q_n (Question/New): The question/new's comment.

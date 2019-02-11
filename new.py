@@ -130,10 +130,11 @@ class New:
             str: The new's information.
 
         """
-		return str(self._title + "\n" + language.get("id") + str(self._id) 
-				+ "\n" + self._content + "\n" + language.get("aut") + self._author + "\n" 
-				+ language.get("la") + self._label + "\n" + language.get("da") + str(self._date) 
-				+ "\n" + language.get("lks") + str(len(self.get_likes())) + " " 
+		return str(language.get("title1") + self._title + "\n" + language.get("id") 
+				+ str(self._id) + "\n" + language.get("de") + self._content + "\n" 
+				+ language.get("aut") + self._author + "\n" + language.get("la") 
+				+ self._label + "\n" + language.get("da") + str(self._date) + "\n" 
+				+ language.get("lks") + str(len(self.get_likes())) + " " 
 				+ language.get("dlks") + str(len(self.get_dislikes())) + "\n\n")
 
 	def show_comments(self, language):

@@ -7,7 +7,6 @@ class User:
 
 
     users = {}
-    banned_users = {} 
 
     def __init__(self, name, username, email, password):
         """Attributes:
@@ -202,13 +201,11 @@ class User:
         """Changes the _ban_state of the user to ban a user.
         """
         self._ban_state = True
-        User.banned_users[self._username] = self
 
     def unban(self):
     	"""Changes the _ban_state of the user to ban a user.
     	"""
     	self._ban_state = False
-    	del User.banned_users[self._username]
 
     @staticmethod
     def delete_favorite(q_c_n):
