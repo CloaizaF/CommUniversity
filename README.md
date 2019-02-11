@@ -1,3 +1,4 @@
 # CommUniversity
 El proyecto que planteamos tendrá como filosofía el conectar a estudiantes de diferentes áreas de estudio con el objetivo de compartir y adquirir conocimientos. Tenemos pensado que nuestro proyecto se pueda ampliar a un ámbito regional y, quizá, nacional; conectando estudiantes de diferentes instituciones. Teniendo en cuenta que no todos los estudiantes de estas instituciones cuentan con el suficiente material académico, queremos ofrecer la oportunidad de que puedan contar con un acompañamiento en sus carreras universitarias. Brindando así el acceso a una comunidad que estará dispuesta a resolver cualquier duda que se le presente al estudiantado.
+
 Para ejecutar el programa, corra la clase Cliente en el archivo cliente.py, a continuación se despelgarán menus de opciones los cuales se navegan insertando los números que aparecen a lado de las opciones.
