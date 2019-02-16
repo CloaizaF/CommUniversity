@@ -17,7 +17,7 @@ class Comment:
 		"""
 		self.set_user(user)
 		self.set_qn(qn)
-		self.set_id(qn.get_num_of_comments())
+		self.set_id(self._qn.get_num_of_comments())
 		self.set_description(description)
 		self.set_date(date(2018, 10, 7).today())
 		self._ratings = {"likes": [], "dislikes": []}

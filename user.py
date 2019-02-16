@@ -17,8 +17,8 @@ class User:
         self._questions
         self._comments
         self._ratings
-        self._numofq (numofq stands for number of questions)
-        self._numofc (numofa stands for number of answers)
+        self._num_of_questions 
+        self._num_of_comments 
         self._ban_state
         """
         self.set_name(name)
