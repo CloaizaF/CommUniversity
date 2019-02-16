@@ -14,40 +14,40 @@ class Spanish:
 	    """,
 	"usero": """
 		¿Que quieres hacer?
-		1. Revisar mi perfil.
-		2. Actualizar my perfil.
-		3. Revisar un canal.
-		4. Leer algunas noticias.
-		5. Revisar mis favoritos.
-		6. Expulsar un usuario.
-		7. Reintegrar un usuario.
-		8. Eliminar mi cuenta.
-		9. Salir.
+			1. Revisar mi perfil.
+			2. Actualizar my perfil.
+			3. Revisar un canal.
+			4. Leer algunas noticias.
+			5. Revisar mis favoritos.
+			6. Expulsar un usuario.
+			7. Reintegrar un usuario.
+			8. Eliminar mi cuenta.
+			9. Salir.
 		""",
 	"favo": """
 		¿Que quieres hacer?
-		1. Leer mis preguntas favoritas.
-		2. Leer mis comentarios favoritos.
-		3. Leer mis noticias favoritas.
-		@. Ir al menu anterior.
+			1. Leer mis preguntas favoritas.
+			2. Leer mis comentarios favoritos.
+			3. Leer mis noticias favoritas.
+			@. Ir al menu anterior.
 		""",
 	"updateo": """
 		¿Que modificaras?
-		1. Todo en mi perfil.
-		2. Solo mi nombre.
-		3. Solo mi nombre de usuario.
-		4. Solo mi correo.
-		5. Solo mi contrasena.
-		@. Ir al menu anterior.
+			1. Todo en mi perfil.
+			2. Solo mi nombre.
+			3. Solo mi nombre de usuario.
+			4. Solo mi correo.
+			5. Solo mi contrasena.
+			@. Ir al menu anterior.
 		""",
 	"channelo": """
 		¿Que quieres hacer?
-		1. Buscar una pregunta.
-		2. Hacer una pregunta.
-		3. Leer algunas preguntas.
-		4. Ver el top de preguntas.
-		5. Eliminar este canal.
-		@. Ir al menu anterior.
+			1. Buscar una pregunta.
+			2. Hacer una pregunta.
+			3. Leer algunas preguntas.
+			4. Ver el top de preguntas.
+			5. Eliminar este canal.
+			@. Ir al menu anterior.
 		""",
 	"selectq":"""
 		1. Seleccionar una pregunta para desplegar mas opciones. 
@@ -55,16 +55,16 @@ class Spanish:
 		""",
 	"questiono": """
 		¿Que quieres hacer?
-		1. Responder la pregunta.
-		2. Leer sus comentarios.
-		3. Darle me gusta.
-		4. Darle no me gusta.
-		5. Ver sus me gusta.
-		6. Ver sus no me gusta.
-		7. Guardar esta pregunta.
-		8. Editar esta pregunta.
-		9. Eliminar esta pregunta.
-		@. Ir al menu anterior.
+			1. Responder la pregunta.
+			2. Leer sus comentarios.
+			3. Darle me gusta.
+			4. Darle no me gusta.
+			5. Ver sus me gusta.
+			6. Ver sus no me gusta.
+			7. Guardar esta pregunta.
+			8. Editar esta pregunta.
+			9. Eliminar esta pregunta.
+			@. Ir al menu anterior.
 		""",
 	"selectc":"""
 		1. Seleccionar un comentario para ver mas opciones.
@@ -72,14 +72,14 @@ class Spanish:
 		""",
 	"commento": """
 		¿Que quieres hacer?
-		1. Darle me gusta.
-		2. Darle no me gusta.
-		3. Ver sus me gusta.
-		4. Ver sus no me gusta. 
-		5. Guardar este comentario.
-		6. Editar este comentario.
-		7. Eliminar este comentario.
-		@. Ir al menu anterior.
+			1. Darle me gusta.
+			2. Darle no me gusta.
+			3. Ver sus me gusta.
+			4. Ver sus no me gusta. 
+			5. Guardar este comentario.
+			6. Editar este comentario.
+			7. Eliminar este comentario.
+			@. Ir al menu anterior.
 		""",
 	"selectn":"""
 		1. Subir una noticia.
@@ -89,64 +89,69 @@ class Spanish:
 		""",
 	"newo": """
 		¿Que quieres hacer?
-		1. Comentar.
-		2. Leer sus comentarios.
-		3. Darle me gusta.
-		4. Darle no me gusta.
-		5. Ver sus me gusta.
-		6. Ver sus no me gusta.
-		7. Guardar esta noticia.
-		8. Editar esta noticia.
-		9. Eliminar esta noticia.
-		@. Ir al menu anterior.
+			1. Comentar.
+			2. Leer sus comentarios.
+			3. Darle me gusta.
+			4. Darle no me gusta.
+			5. Ver sus me gusta.
+			6. Ver sus no me gusta.
+			7. Guardar esta noticia.
+			8. Editar esta noticia.
+			9. Eliminar esta noticia.
+			@. Ir al menu anterior.
 		""",
 	"editnew": """
 		¿Que quieres editar de esta noticia?
-		1. Todo en esta noticia.
-		2. Solo su titulo.
-		3. Solo su contenido.
-		4. Solo su autor.
-		5. Solo su categoria.
-		@. Ir al menu anterior.
+			1. Todo en esta noticia.
+			2. Solo su titulo.
+			3. Solo su contenido.
+			4. Solo su autor.
+			5. Solo su categoria.
+			@. Ir al menu anterior.
 		""",
 	"gbp": """
 		@. Ir al menu anterior. 
 		""",
 	"needo": """
+		Los operadores sirven para enlazar palabras claves en una busqueda:
+	    	Y: Hace obligatoria la ocurrencia de las dos palabras claves ingresadas.
+	    	O: Hace obligatoria UNA ocurrencia de las dos palabras claves ingresadas.
+	    	NO: Excluye las ocurrencias de las palabras claves ingresadas.
+
 	    ¿Necesitas utilizar algun operador(Y,O,NO)?:
-	    1. Si, lo necesito.
-	    2. No, no lo necesito.
+		    1. Si, lo necesito.
+		    2. No, no lo necesito.
 	    """,
 	"selecto": """
 	    Selecciona el operador que quieres utilizar:
-	    1. Y
-	    2. O
-	    3. NO
+		    1. Y
+		    2. O
+		    3. NO
 	    """,
 	"attempts": """
 		Ya has tratado de ingresar 3 veces, ¿quieres intentarlo una vez mas?
-		1. Si.
-		2. No.
+			1. Si.
+			2. No.
 		""",
 	"pattemps":"""
 		Ya has ingresado contrasenas 3 veces, ¿quieres intentarlo una vez mas?
-		1. Si.
-		2. No.
+			1. Si.
+			2. No.
 		""",
 	"sure": """
 		Estas segur@ de que quieres eliminar tu cuenta?
-		1. Si, quiero eliminar mi cuenta.
-		2. No, no quiero eliminar mi cuenta.
+			1. Si, quiero eliminar mi cuenta.
+			2. No, no quiero eliminar mi cuenta.
 		""",
 	"sorto": """
 		¿Quieres ordenar los canales?
-		1. Si.
-		2. No.
+			1. Si.
+			2. No.
 		""",
 	"sortby": """
 		Ordenar los canales por:
-		1. El numero de visitas del canal.
-		2. El numero de preguntas del canal.
+			1. El numero de visitas del canal.
+			2. El numero de preguntas del canal.
 		""",
 	"maxattempts": "\t\tYa has tratado de ingresar 4 veces, te redireccionaremos al menu principal.",
 	"maxpattempts": "\t\tYa has escrito contrasenas 4 veces, te redireccionaremos al menu principal.",

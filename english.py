@@ -14,40 +14,40 @@ class English:
 	    """,
 	"usero": """
 		What do you want to do?
-		1. Check my profile.
-		2. Update my profile.
-		3. Check a channel.
-		4. Read some news.
-		5. Check my favorites.
-		6. Ban a user.
-		7. Unban a user.
-		8. Delete my account.
-		9. Log out.
+			1. Check my profile.
+			2. Update my profile.
+			3. Check a channel.
+			4. Read some news.
+			5. Check my favorites.
+			6. Ban a user.
+			7. Unban a user.
+			8. Delete my account.
+			9. Log out.
 		""",
 	"favo": """
 		What do you want to do?
-		1. Read my favorite questions.
-		2. Read my favorite comments.
-		3. Read my favorite news.
-		@. Go back to the previous menu.
+			1. Read my favorite questions.
+			2. Read my favorite comments.
+			3. Read my favorite news.
+			@. Go back to the previous menu.
 		""",
 	"updateo": """
 		What will you modify?
-		1. Everything in my profile.
-		2. Only my name.
-		3. Only my username.
-		4. Only my email.
-		5. Only my password.
-		@. Go back to the previous menu.
+			1. Everything in my profile.
+			2. Only my name.
+			3. Only my username.
+			4. Only my email.
+			5. Only my password.
+			@. Go back to the previous menu.
 		""",
 	"channelo": """
 		What do you want to do?
-		1. Search for a question.
-		2. Make a question.
-		3. Read some questions.
-		4. Watch top questions.
-		5. Delete this channel.
-		@. Go back to the previous menu.
+			1. Search for a question.
+			2. Make a question.
+			3. Read some questions.
+			4. Watch top questions.
+			5. Delete this channel.
+			@. Go back to the previous menu.
 		""",
 	"selectq":"""
 		1. Select a question to unfold more options. 
@@ -55,16 +55,16 @@ class English:
 		""",
 	"questiono": """
 		What do you want to do?
-		1. Answer the question.
-		2. Read its comments.
-		3. Give it a like.
-		4. Give it a dislike.
-		5. Watch its likes.
-		6. Watch its dislikes.
-		7. Save this question.
-		8. Edit this question.
-		9. Delete this question.
-		@. Go back to the previous menu.
+			1. Answer the question.
+			2. Read its comments.
+			3. Give it a like.
+			4. Give it a dislike.
+			5. Watch its likes.
+			6. Watch its dislikes.
+			7. Save this question.
+			8. Edit this question.
+			9. Delete this question.
+			@. Go back to the previous menu.
 		""",
 	"selectc":"""
 		1. Select a comment to unfold more options. 
@@ -72,14 +72,14 @@ class English:
 		""",
 	"commento": """
 		What do you want to do?
-		1. Give it a like.
-		2. Give it a dislike.
-		3. Watch its likes.
-		4. Watch its dislikes.
-		5. Save this comment.
-		6. Edit this comment.
-		7. Delete this comment.
-		@. Go back to the previous menu.
+			1. Give it a like.
+			2. Give it a dislike.
+			3. Watch its likes.
+			4. Watch its dislikes.
+			5. Save this comment.
+			6. Edit this comment.
+			7. Delete this comment.
+			@. Go back to the previous menu.
 		""",
 	"selectn":"""
 		1. Upload a new.
@@ -89,64 +89,69 @@ class English:
 		""",
 	"newo": """
 		What do you want to do?
-		1. Comment.
-		2. Read its comments.
-		3. Give it a like.
-		4. Give it a dislike.
-		5. Watch its likes.
-		6. Watch its dislikes.
-		7. Save this new.
-		8. Edit this new.
-		9. Delete this new.
-		@. Go back to the previous menu.
+			1. Comment.
+			2. Read its comments.
+			3. Give it a like.
+			4. Give it a dislike.
+			5. Watch its likes.
+			6. Watch its dislikes.
+			7. Save this new.
+			8. Edit this new.
+			9. Delete this new.
+			@. Go back to the previous menu.
 		""",
 	"editnew": """
 		What do you want to edit from this new?
-		1. Everything in this new.
-		2. Only it's title.
-		3. Only it's content.
-		4. Only it's author.
-		5. Only it's label.
-		@. Go back to the previous menu. 
+			1. Everything in this new.
+			2. Only it's title.
+			3. Only it's content.
+			4. Only it's author.
+			5. Only it's label.
+			@. Go back to the previous menu. 
 		""",
 	"gbp": """
 		@. Go back to the previous menu.
 		""",
 	"needo": """
+		The operators work for connecting the keywords in a search:
+			AND: It makes mandatory the occurrence of the two keywords inserted.
+			OR: It makes optional the occurrence of the two keywords inserted.
+			NOT: It excludes the occurrence of the two keywords inserted.
+
 	    Do you need to use an operator(AND,OR,NOT)?:
-	    1. Yes, I do.
-	    2. No, I do not.
+		    1. Yes, I do.
+		    2. No, I do not.
 	    """,
 	"selecto": """
 	    Select the operator you want to use:
-	    1. AND
-	    2. OR
-	    3. NOT
+		    1. AND
+		    2. OR
+		    3. NOT
 	    """,
 	"attempts": """
 		You have already tried to log in 3 times, do you want to try once more?
-		1. Yes.
-		2. No.
+			1. Yes.
+			2. No.
 		""",
 	"pattemps":"""
 		You have already inserted passwords 3 times, do you want to try once more?
-		1. Yes.
-		2. No.
+			1. Yes.
+			2. No.
 		""",
 	"sure": """
 		Are you sure you want to delete your account?
-		1. Yes, I want to delete my account.
-		2. No, I do not want to delete my account.
+			1. Yes, I want to delete my account.
+			2. No, I do not want to delete my account.
 		""",
 	"sorto": """
 		Do you want to sort the channels?
-		1. Yes.
-		2. No.
+			1. Yes.
+			2. No.
 		""",
 	"sortby": """
 		Sort the channels by:
-		1. Channel's number of visits.
-		2. Channel's number of questions.
+			1. Channel's number of visits.
+			2. Channel's number of questions.
 		""",
 	"maxattempts": "\t\tYou have already tried to log in 4 times, we will redirect you to the main menu.",
 	"maxpattempts": "\t\tYou have already typed passwords 4 times, we will redirect you to the main menu.",
