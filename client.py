@@ -14,7 +14,6 @@ import random
 
 class Client:
 
-
 	@staticmethod
 	def in_name(language):
 		"""Asks the user for a name and returns it. 
@@ -331,9 +330,11 @@ class Client:
         """
 		print(language.get("channel"))
 		channel = input(language.get("inputtabs"))
+		channel = channel.lower()
 		channelr = None
-		if channel in Channel.channels:
-			channelr = Channel.channels[channel]
+		for channelk in Channel.channels:
+			if (channel == channelk.lower()):
+				channelr = Channel.channels[channelk]
 		if isinstance(channelr, Channel):
 			return channelr
 		else: 
@@ -443,22 +444,24 @@ class Client:
 			if opt == "1":
 				print(language.get("keyword"))
 				keyword1 = input(language.get("inputtabs"))
+				keyword1 = keyword1.lower()
 				print(language.get("keyword"))
 				keyword2 = input(language.get("inputtabs"))
+				keyword2 = keyword2.lower()
 				printing = ""
 				print(language.get("selecto"))
 				op = input(language.get("inputtabs"))
 				if op == "1":
 					for question in channel.get_questions():
-						if (keyword1 in question.get_question()) and (keyword2 in question.get_question()):
+						if (keyword1 in question.get_question().lower()) and (keyword2 in question.get_question().lower()):
 							printing += question.to_string(language)
 				elif op == "2":
 					for question in channel.get_questions():
-						if (keyword1 in question.get_question()) or (keyword2 in question.get_question()):
+						if (keyword1 in question.get_question().lower()) or (keyword2 in question.get_question().lower()):
 							printing += question.to_string(language)
 				elif op == "3":
 					for question in channel.get_questions():
-						if not ((keyword1 in question.get_question()) and (keyword2 in question.get_question())):
+						if not ((keyword1 in question.get_question().lower()) and (keyword2 in question.get_question().lower())):
 							printing += question.to_string(language)
 				else:
 					print(language.get("i"))
@@ -470,9 +473,10 @@ class Client:
 			elif opt == "2":
 				print(language.get("keyword"))
 				keyword1 = input(language.get("inputtabs"))
+				keyword1 = keyword1.lower()
 				printing = ""
 				for question in channel.get_questions():
-					if keyword1 in question.get_question():
+					if keyword1 in question.get_question().lower():
 						printing += question.to_string(language)
 				if len(printing):
 					print(printing)
@@ -1173,9 +1177,10 @@ class Client:
 		file.truncate()
 		for usernamek in User.users:
 			user = User.users[usernamek]
-			file.write("Name: " + user.get_name() + "; Username: " + user.get_username()
-						+ "; Email: " + user.get_email() + "; Password: " + user.get_password() + "; "
-						)
+			if (not isinstance(user,Admin)):
+				file.write("Name: " + user.get_name() + "; Username: " + user.get_username()
+							+ "; Email: " + user.get_email() + "; Password: " + user.get_password() + "; "
+							)
 		file.close()
 
 	@staticmethod
