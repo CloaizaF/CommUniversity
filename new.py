@@ -130,12 +130,12 @@ class New:
             str: The new's information.
 
         """
-		return str(language.get("title1") + self._title + "\n" + language.get("id") 
-				+ str(self._id) + "\n" + language.get("de") + self._content + "\n" 
-				+ language.get("aut") + self._author + "\n" + language.get("la") 
-				+ self._label + "\n" + language.get("da") + str(self._date) + "\n" 
+		return str("\n\t" + language.get("title1") + self._title + "\n\t" + language.get("id") 
+				+ str(self._id) + "\n\t" + language.get("de") + self._content + "\n\t" 
+				+ language.get("aut") + self._author + "\n\t" + language.get("la") 
+				+ self._label + "\n\t" + language.get("da") + str(self._date) + "\n\t" 
 				+ language.get("lks") + str(len(self.get_likes())) + " " 
-				+ language.get("dlks") + str(len(self.get_dislikes())) + "\n\n")
+				+ language.get("dlks") + str(len(self.get_dislikes())) + "\n")
 
 	def show_comments(self, language):
 		"""Shows the news's comments.
@@ -166,10 +166,10 @@ class New:
 		printing = ""
 		if reaction == "like":
 			for rating in self.get_likes():
-				printing += (rating.get_user()).get_username() + "\n"
+				printing += "\n\t\t\t" + (rating.get_user()).get_username()
 		elif reaction == "dislike":
 			for rating in self.get_dislikes():
-				printing += (rating.get_user()).get_username() + "\n"
+				printing += "\n\t\t\t" + (rating.get_user()).get_username()
 		if printing == "" and reaction == "like":
 			printing = language.get("nls")
 		elif printing == "" and reaction == "dislike":

@@ -17,8 +17,8 @@ class User:
         self._questions
         self._comments
         self._ratings
-        self._num_of_questions 
-        self._num_of_comments 
+        self._numofq (numofq stands for number of questions)
+        self._numofc (numofa stands for number of answers)
         self._ban_state
         """
         self.set_name(name)
@@ -119,8 +119,8 @@ class User:
             str: The user's information.
 
         """
-        return str(language.get("n") + self._name + "\n" + language.get("un") 
-                + self._username + "\n" + language.get("e") + self._email + "\n")
+        return str(language.get("n") + self._name + "\n" + language.get("un")
+                + self._username + "\n" + language.get("e") + self._email)
 
     def check_username(self, username):
         """Checks whether the username passed is the user's username or not.

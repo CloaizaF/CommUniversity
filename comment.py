@@ -17,7 +17,7 @@ class Comment:
 		"""
 		self.set_user(user)
 		self.set_qn(qn)
-		self.set_id(self._qn.get_num_of_comments())
+		self.set_id(qn.get_num_of_comments())
 		self.set_description(description)
 		self.set_date(date(2018, 10, 7).today())
 		self._ratings = {"likes": [], "dislikes": []}
@@ -89,11 +89,11 @@ class Comment:
             str: The comment's information.
 
         """
-		return str(language.get("c") + self._description + "\n" + language.get("id") 
-				+ str(self._id) + "\n" + language.get("mb1") + self._user.get_username() 
-				+ "\n" + language.get("da") + str(self._date) + "\n" + language.get("lks") 
+		return str("\n\t" + language.get("c") + self._description + "\n\t" + language.get("id") 
+				+ str(self._id) + "\n\t" + language.get("mb1") + self._user.get_username() 
+				+ "\n\t" + language.get("da") + str(self._date) + "\n\t" + language.get("lks") 
 				+ str(len(self.get_likes())) + " " + language.get("dlks") 
-				+ str(len(self.get_dislikes())) + "\n\n")
+				+ str(len(self.get_dislikes())) + "\n")
 
 	def watch_users_reactions(self, language, reaction):
 		"""Shows the users who reacted to the comment.
@@ -108,14 +108,14 @@ class Comment:
 		printing = ""
 		if reaction == "like":
 			for rating in self.get_likes():
-				printing += (rating.get_user()).get_username() + "\n"
+				printing += "\n\t\t\t" + (rating.get_user()).get_username()
 		elif reaction == "dislike":
 			for rating in self.get_dislikes():
-				printing += (rating.get_user()).get_username() + "\n"
+				printing += "\n\t\t\t" + (rating.get_user()).get_username()
 		if printing == "" and reaction == "like":
-			printing = language.get("nls")
+			printing = "\t" + language.get("nls")
 		elif printing == "" and reaction == "dislike":
-			printing = language.get("ndls")
+			printing = "\t" + language.get("ndls")
 		return printing
 
 	def check_user(self, user):

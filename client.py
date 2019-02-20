@@ -14,6 +14,7 @@ import random
 
 class Client:
 
+
 	@staticmethod
 	def in_name(language):
 		"""Asks the user for a name and returns it. 
@@ -103,6 +104,7 @@ class Client:
         Returns:
             User: The created user object.
 		"""
+		print(language.get("separator"))
 		name = Client.in_name(language)
 		username = Client.in_username(language)
 		email = Client.in_email(language)
@@ -122,6 +124,7 @@ class Client:
 		EXIT = 1
 		attempts = 0
 		while break_while != EXIT:
+			print(language.get("separator"))
 			print(language.get("username"))
 			username = input(language.get("inputtabs"))
 			u = None
@@ -203,6 +206,7 @@ class Client:
 			object: A User object if the username exists, otherwise, calls itself 
 				once again to get valid input.
 		"""
+		print(language.get("separator"))
 		if to_ban == "ban":
 			print(language.get("inub"))
 		elif to_ban == "unban":
@@ -291,7 +295,6 @@ class Client:
 				if isinstance(question_returned, Question):
 					return question_returned
 				else:
-					print(language.get("iid"))
 					return Client.in_id(language, ch_q_n)
 			elif isinstance(ch_q_n, Question) or isinstance(ch_q_n, New):
 				comment_returned = None
@@ -337,7 +340,7 @@ class Client:
 				channelr = Channel.channels[channelk]
 		if isinstance(channelr, Channel):
 			return channelr
-		else: 
+		else:
 			print(language.get("ic"))
 			return Client.in_channel(language)
 
@@ -356,6 +359,7 @@ class Client:
 			break_while = 0
 			EXIT = 1
 			while break_while != EXIT:
+				print(language.get("separator"))
 				print(language.get("sorto"))
 				option = input(language.get("inputtabs"))
 				if option == "1":
@@ -385,6 +389,7 @@ class Client:
 				else:
 					print(language.get("i"))
 		else:
+			print(language.get("separator"))
 			print(language.get("nchannels"))
 
 	@staticmethod
@@ -439,8 +444,10 @@ class Client:
 		break_while = 0
 		EXIT = 1
 		while break_while != EXIT:
-			print(language.get("needo"))
+			print (language.get("separator"))
+			print (language.get("needo"))
 			opt = input(language.get("inputtabs"))
+			print (language.get("separator"))
 			if opt == "1":
 				print(language.get("keyword"))
 				keyword1 = input(language.get("inputtabs"))
@@ -496,13 +503,11 @@ class Client:
         Returns:
             str: The news' information if they exist. Otherwise, shows there are none.
         """
-		if len(New.news):
-			print(language.get("news"))
-			for new in New.news:
-				print(language.get("title1") + str((New.news[new]).get_title()) + "\n" 
-				+ language.get("id") + str((New.news[new]).get_id()))
-		else:
-			print(language.get("nnews")) 
+		print(language.get("separator"))
+		print(language.get("news"))
+		for new in New.news:
+			print("\n\t" + language.get("title1") + str((New.news[new]).get_title()) + "\n\t" 
+			+ language.get("id") + str((New.news[new]).get_id()))
 
 	@staticmethod
 	def top_news(language):
@@ -560,9 +565,11 @@ class Client:
 			break_while = 0
 			EXIT = 1
 			while break_while != EXIT:
+				print(language.get("separator"))
 				print(language.get("editnew"))
 				opt = input(language.get("inputtabs"))
 				if opt == "1":
+					print(language.get("separator"))
 					print(language.get("title"))
 					title = input(language.get("inputtabs"))
 					new.set_title(title)
@@ -575,26 +582,37 @@ class Client:
 					print(language.get("label"))
 					label = input(language.get("inputtabs"))
 					new.set_label(label)
+					print(language.get("newupd"))
 					break_while = EXIT
 				elif opt == "2":
+					print(language.get("separator"))
 					print(language.get("title"))
 					title = input(language.get("inputtabs"))
 					new.set_title(title)
+					print(language.get("newupd"))
 					break_while = EXIT
 				elif opt == "3":
+					print(language.get("separator"))
 					print(language.get("content"))
 					content = input(language.get("inputtabs"))
 					new.set_content(content)
+					print(language.get("newupd"))
 					break_while = EXIT
 				elif opt == "4":
+					print(language.get("separator"))
 					print(language.get("author"))
 					author = input(language.get("inputtabs"))
 					new.set_author(author)
+					print(language.get("newupd"))
 					break_while = EXIT
 				elif opt == "5":
+					print(language.get("separator"))
 					print(language.get("label"))
 					label = input(language.get("inputtabs"))
 					new.set_label(label)
+					print(language.get("newupd"))
+					break_while = EXIT
+				elif opt == "@":
 					break_while = EXIT
 				else:
 					print(language.get("i"))
@@ -662,9 +680,11 @@ class Client:
 		break_while = 0
 		EXIT = 1
 		while break_while != EXIT:   #While n2
+			print(language.get("separator1"))
 			print(language.get("usero"))
 			option = input(language.get("inputtabs"))
 			if option == "1":
+				print(language.get("separator"))
 				print(user.to_string(language))
 			elif option == "2":
 				Client.menu_user_updates(user, language)
@@ -695,6 +715,7 @@ class Client:
 				else:
 					print(language.get("np"))
 			elif option == "8":
+				print(language.get("separator"))
 				print(language.get("username"))
 				username = input(language.get("inputtabs"))
 				if user.check_username(username):
@@ -702,16 +723,22 @@ class Client:
 					password = input(language.get("inputtabs"))
 					if user.get_password() == password: 
 						print(language.get("sure"))
-						option1 = input(language.get("inputtabs"))
-						if option1 == "1":
-							if isinstance(user, Admin):
-								user.delete_admin()
+						break_while1 = 0
+						while break_while1 != EXIT:
+							option1 = input(language.get("inputtabs"))
+							if option1 == "1":
+								if isinstance(user, Admin):
+									user.delete_admin()
+								else:
+									user.delete_user()
+								print(language.get("ue"))
+								break_while1 = EXIT	
+								break_while = EXIT
+							elif option1 == "2":
+								print(language.get("redirecting"))
+								break_while1 = EXIT
 							else:
-								user.delete_user()
-						elif option1 == "2":
-							print(language.get("redirecting"))
-						else:
-							print(language.get("i"))
+								print(language.get("i"))
 					else:
 						print(language.get("wp"))
 				else:
@@ -733,9 +760,11 @@ class Client:
 		break_while = 0
 		EXIT = 1
 		while break_while != EXIT:
+			print(language.get("separator"))
 			print(language.get("updateo"))
 			option = input(language.get("inputtabs"))
 			if option == "1":
+				print(language.get("separator"))
 				if Client.is_user_password(user, language):
 					user.set_name(Client.in_name(language))
 					user.set_username(Client.in_username(language))
@@ -744,18 +773,22 @@ class Client:
 				print(language.get("proupd"))
 				break_while = EXIT
 			elif option == "2":	
+				print(language.get("separator"))
 				user.set_name(Client.in_name(language))
 				print(language.get("nupd"))
 				break_while = EXIT
 			elif option == "3":
+				print(language.get("separator"))
 				user.set_username(Client.in_username(language))
 				print(language.get("usupd"))
 				break_while = EXIT
 			elif option == "4":
+				print(language.get("separator"))
 				user.set_email(Client.in_email(language))
 				print(language.get("eupd"))
 				break_while = EXIT
 			elif option == "5":
+				print(language.get("separator"))
 				if Client.is_user_password(user, language):
 					user.set_password(Client.in_password(language))
 					print(language.get("pupd"))
@@ -781,7 +814,8 @@ class Client:
 			break_while = 0
 			EXIT = 1
 			while break_while != EXIT:   #While n3
-				print(channel.to_string(language))
+				print(language.get("separator1"))
+				print(language.get("cs") + channel.get_topic() + language.get("sl"))
 				print(language.get("channelo"))
 				option = input(language.get("inputtabs"))
 				if option == "1":
@@ -807,6 +841,8 @@ class Client:
 						print(language.get("nq"))
 				elif option == "4":
 					if len(channel.get_questions()):
+						print(language.get("separator"))
+						print(language.get("topq"))
 						print(channel.top_questions(language))
 						break_while1 = 0
 						while break_while1 != EXIT:
@@ -843,6 +879,8 @@ class Client:
 		break_while = 0
 		EXIT = 1
 		while break_while != EXIT:
+			print(language.get("separator"))
+			print (language.get("qs"))
 			print(channel.to_string1(language))
 			print(language.get("selectq"))
 			option = input(language.get("inputtabs"))
@@ -851,6 +889,8 @@ class Client:
 				question.increase_views()
 				break_while1 = 0
 				while break_while1 != EXIT:
+					print (language.get("separator1"))
+					print (language.get("ps"))
 					print(question.to_string(language))
 					print(language.get("questiono"))
 					option1 = input(language.get("inputtabs"))
@@ -908,7 +948,7 @@ class Client:
 		break_while = 0
 		EXIT = 1
 		while break_while != EXIT:
-			print(language.get("News"))
+			print(language.get("separator1"))
 			print(language.get("selectn"))
 			option = input(language.get("inputtabs"))
 			if option == "1":
@@ -924,10 +964,13 @@ class Client:
 					new.increase_views()
 					break_while1 = 0
 					while break_while1 != EXIT:
+						print(language.get("separator1"))
+						print(language.get("ns"))
 						print(new.to_string(language))
 						print(language.get("newo"))
 						option1 = input(language.get("inputtabs"))
 						if option1 == "1":
+							print(language.get("separator"))
 							comment = Client.comment(language, user, new)
 							print(comment.to_string(language))
 						elif option1 == "2":
@@ -963,7 +1006,11 @@ class Client:
 							break_while1 = EXIT
 						else:
 							print(language.get("i"))
+				else:
+					print(language.get("nnews"))
 			elif option == "3":
+				print(language.get("separator"))
+				print(language.get("topn"))
 				print(Client.top_news(language))
 				break_while1 = 0
 				EXIT = 1
@@ -992,7 +1039,8 @@ class Client:
 		break_while = 0
 		EXIT = 1
 		while break_while != EXIT:
-			print(q_n.to_string(language))
+			print(language.get("separator"))
+			print(language.get("coms"))
 			print(q_n.show_comments(language))
 			print(language.get("selectc"))
 			option = input(language.get("inputtabs"))
@@ -1000,6 +1048,8 @@ class Client:
 				comment = Client.in_id(language, q_n)
 				break_while1 = 0
 				while break_while1 != EXIT:
+					print(language.get("separator1"))
+					print(language.get("comse"))
 					print(comment.to_string(language))
 					print(language.get("commento"))
 					option1 = input(language.get("inputtabs"))
@@ -1025,13 +1075,14 @@ class Client:
 							comment.delete_comment()
 							Client.delete_favorite(comment)
 							print(language.get("cod"))
+							break_while1 = EXIT
 						else:
 							print(language.get("np"))
-						break_while1 = EXIT
 					elif option1 == "@":   #To go to the previous menu 
 						break_while1 = EXIT
 					else:
 						print(language.get("i"))
+						print(language.get("separator"))
 			elif option == "@":
 					break_while = EXIT
 			else: 
@@ -1049,23 +1100,28 @@ class Client:
 		break_while = 0
 		EXIT = 1
 		while break_while != EXIT:
+			print(language.get("separator1"))
 			print(language.get("favo"))
 			option = input(language.get("inputtabs"))
+			print(language.get("separator"))
 			if option == "1":
 				favorites = user.watch_fav(language, "question")
 				if len(favorites):
+					print(language.get("fq"))
 					print(favorites)
 				else: 
 					print(language.get("nfq"))
 			elif option == "2":
 				favorites = user.watch_fav(language, "comment")
 				if len(favorites):
+					print(language.get("fc"))
 					print(favorites)
 				else: 
 					print(language.get("nfc"))
 			elif option == "3":
 				favorites = user.watch_fav(language, "new")
 				if len(favorites):
+					print(language.get("fn"))
 					print(favorites)
 				else: 
 					print(language.get("nfn"))
@@ -1078,11 +1134,13 @@ class Client:
 	def main():
 		"""Displays the main menu for the person to interact with it."""
 		language = Client.language()
+		print (language.get("welcome"))
 		attempts_to_generate_data = True
 		attempts_to_generate_datat = True
 		while True: 
+			print(language.get("separator1"))
 			print(language.get("mm"))
-			option = input(language.get("inputtabs"))	
+			option = input(language.get("inputtabs"))
 			if option == "1":   
 				user = Client.sign_in(language)
 			elif option == "2":   
@@ -1113,6 +1171,8 @@ class Client:
 				break
 			else:
 				print(language.get("i"))
+		print(language.get("bye"))
+		print(language.get("separator1"))
 		os._exit(0)
 
 	@staticmethod
@@ -1191,6 +1251,7 @@ class Client:
 			dict: The language in which the information will be given.
 
 		"""
+		print(Message.select_language.get("welcome"))
 		print(Message.select_language.get("languages"))
 		option = input(Message.select_language.get("inputtabs"))
 		if option == "1":

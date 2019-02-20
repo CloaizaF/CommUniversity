@@ -9,8 +9,7 @@ class Channel:
 		""" Attributes:
 		self._topic
 	    self._description
-	    self._num_of_questions
-	    sefl._visits
+	    self._numofQ
 		"""
 		self.set_topic(topic)
 		self.set_description(description)
@@ -62,8 +61,8 @@ class Channel:
             str: The channel's information.
 
         """
-		return str(language.get("topic") + self._topic + "\n" + language.get("de") 
-				+ self._description + "\n\n")
+		return str("\n\t" + language.get("topic") + self._topic + "\n\t" + language.get("de") 
+				+ self._description)
 
 	def to_string1(self, language):
 		"""Allows the object channel to be printed with all of its questions.
@@ -75,7 +74,7 @@ class Channel:
             str: The channel's information.
 
         """
-		printing = str(self.to_string(language))
+		printing = ""
 		if len(self._questions):
 			for question in self._questions:
 				printing += question.to_string(language)

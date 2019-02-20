@@ -114,11 +114,11 @@ class Question:
             str: The question's information.
 
         """	
-		return str(language.get("q") + self._question + "\n" + language.get("id") 
-				+ str(self._id) + "\n" + language.get("mb") + (self._user).get_username() 
-				+ "\n" + language.get("da") + str(self._date) + "\n" + language.get("lks") 
+		return str("\n\t" + language.get("q") + self._question + "\n\t" + language.get("id") 
+				+ str(self._id) + "\n\t" + language.get("mb") + (self._user).get_username() 
+				+ "\n\t" + language.get("da") + str(self._date) + "\n\t" + language.get("lks") 
 				+ str(len(self.get_likes())) + " " + language.get("dlks") 
-				+ str(len(self.get_dislikes())) + "\n\n")
+				+ str(len(self.get_dislikes())) + "\n")
 
 	def show_comments(self, language):
 		"""Shows the question's comments.
@@ -149,10 +149,10 @@ class Question:
 		printing = ""
 		if reaction == "like":
 			for rating in self.get_likes():
-				printing += (rating.get_user()).get_username() + "\n"
+				printing += "\n\t\t\t" + (rating.get_user()).get_username()
 		elif reaction == "dislike":
 			for rating in self.get_dislikes():
-				printing += (rating.get_user()).get_username() + "\n"
+				printing += "\n\t\t\t" + (rating.get_user()).get_username()
 		if printing == "" and reaction == "like":
 			printing = language.get("nls")
 		elif printing == "" and reaction == "dislike":
