@@ -9,7 +9,8 @@ class Channel:
 		""" Attributes:
 		self._topic
 	    self._description
-	    self._numofQ
+	    self._num_of_questions
+	    self._visits
 		"""
 		self.set_topic(topic)
 		self.set_description(description)
